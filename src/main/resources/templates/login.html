@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>login</title>
+    <link rel="stylesheet" href="css/loginStyle.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="css/js/jquery-3.2.1.js"></script>
+</head>
+
+<body>
+<div class="wrapper">
+    <div class="container">
+        <h1>Welcome</h1>
+        <p th:text="${errormsg}" style="color: red"></p>
+        <form class="form" method="post">
+            <input type="email" name="email" placeholder="Enter your Email"/>
+            <input type="password" name="password" placeholder="Password"/>
+            <button type="submit">Login</button>
+            <br/>
+            <br/>
+            <p>Don't have an account?<a data-toggle="modal" data-target="#myModal" href="">signUp</a></p>
+        </form>
+    </div>
+
+    <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Fill the Form</h4>
+            </div>
+            <div class="modal-body">
+                <form id="newF" class="form-inline" method="post">
+                    <select  class="form-control" name="tors" style="width: 100%">
+                        <option>Teacher</option>
+                        <option>Student</option>
+                    </select>
+
+                    <input class="form-control" type="email" name="email" placeholder="Email" style="width: 100%;margin-top: 5px;" />
+                    <input class="form-control" type="password" name="password" placeholder="password" style="width: 100%"/>
+
+                    <button id="sButton" type="submit" class="btn btn-default" style="width: 100%">SignUp</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    $(document).ready(function () {
+
+        $("#sButton").click(function (event) {
+
+            //stop submit the form, we will post it manually.
+            event.preventDefault();
+
+            fire_ajax_submit();
+
+        });
+
+    });
+
+    function fire_ajax_submit() {
+
+        // Get form
+        var form = $('#newF')[0];
+
+        var data = new FormData(form);
+        $("#sButton").prop("disabled", true);
+        var modal = document.getElementById('myModal');
+        modal.style.display="none";
+        $('body').removeClass().removeAttr('style');$('.modal-backdrop').remove();
+
+
+        $.ajax({
+            type: "POST",
+            url: "/signUp",
+            data: data,
+            //http://api.jquery.com/jQuery.ajax/
+            //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
+            processData: false, //prevent jQuery from automatically transforming the data into a query string
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+
+                alert("Successfully Login Now");
+
+            },
+            error: function (e) {
+
+
+                $("#sButton").prop("disabled", false);
+
+            }
+        });
+
+    }
+</script>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<script src="css/js/index.js"></script>
+</body>
+</html>
