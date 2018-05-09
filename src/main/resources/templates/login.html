@@ -48,7 +48,7 @@
                 <h4 class="modal-title">Fill the Form</h4>
             </div>
             <div class="modal-body">
-                <form th:action="@{/registration}" method="post" th:object="${user}">
+                <form th:action="@{/registration}" method="post" th:object="${user}" id="signUp">
                     <!-- Text input-->
 
                         <input id="userName" th:id="userName" class="form-control" th:type="text" th:name="userName"
