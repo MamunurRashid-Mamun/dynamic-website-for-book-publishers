@@ -1,9 +1,9 @@
 package com.bookpublisher.bookpublisher.config;
 
 
+import com.bookpublisher.bookpublisher.Repositories.UserRepository;
 import com.bookpublisher.bookpublisher.entity.Role;
 import com.bookpublisher.bookpublisher.entity.User;
-import com.bookpublisher.bookpublisher.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,8 +1,9 @@
 package com.bookpublisher.bookpublisher.Controllers;
 
+import com.bookpublisher.bookpublisher.Repositories.UserRepository;
 import com.bookpublisher.bookpublisher.entity.Role;
 import com.bookpublisher.bookpublisher.entity.User;
-import com.bookpublisher.bookpublisher.repositories.UserRepository;
+import com.bookpublisher.bookpublisher.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
