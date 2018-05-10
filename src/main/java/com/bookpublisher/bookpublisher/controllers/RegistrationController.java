@@ -1,6 +1,6 @@
-package com.bookpublisher.bookpublisher.Controllers;
+package com.bookpublisher.bookpublisher.controllers;
 
-import com.bookpublisher.bookpublisher.Repositories.*;
+import com.bookpublisher.bookpublisher.repositories.UserRepository;
 import com.bookpublisher.bookpublisher.entity.Role;
 import com.bookpublisher.bookpublisher.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +22,18 @@ public class RegistrationController {
     @Autowired
     UserRepository userRepository;
 
+    @RequestMapping(value="/registration", method = RequestMethod.GET)
+    public ModelAndView registration(){
+        ModelAndView modelAndView = new ModelAndView();
+        User user = new User();
+        modelAndView.addObject("user", user);
+        modelAndView.setViewName("registration");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public @ResponseBody
     ModelAndView createNewUser(@Valid User user, BindingResult bindingResult, @ModelAttribute("confirmPassword") String confirmPassword) {
-       System.out.println("printing user "+user);
         ModelAndView modelAndView = new ModelAndView();
         User userExist1 = userRepository.findByUserName(user.getUserName());
         User userExist2 = userRepository.findByEmail(user.getEmail());
@@ -42,7 +50,7 @@ public class RegistrationController {
             modelAndView.addObject("confirmPasswordError","Password mismatch");
         }
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("login");
+            modelAndView.setViewName("registration");
         }
         else {
             List roles = new ArrayList();

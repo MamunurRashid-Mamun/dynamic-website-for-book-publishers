@@ -1,6 +1,5 @@
-package com.bookpublisher.bookpublisher.Controllers;
+package com.bookpublisher.bookpublisher.controllers;
 
-import com.bookpublisher.bookpublisher.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;

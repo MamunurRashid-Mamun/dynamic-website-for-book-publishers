@@ -14,6 +14,7 @@
 <div class="wrapper">
     <div class="container">
         <h1>Welcome</h1>
+        <label class="col-md-4 col-md-offset-4"><span th:utext="${successMessage}" style="color: #aa07b3"></span></label>
         <label th:if="${param.error}" class="text-danger" th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}">Invalid username and password.</label>
         <form class="form" method="post" action="/login">
             <input type="text" name="username" placeholder="Enter Username or Email"/>
