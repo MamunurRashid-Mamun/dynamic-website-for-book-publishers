@@ -1,8 +1,8 @@
 package com.bookpublisher.bookpublisher.Controllers;
 
+import com.bookpublisher.bookpublisher.Repositories.*;
 import com.bookpublisher.bookpublisher.entity.Role;
 import com.bookpublisher.bookpublisher.entity.User;
-import com.bookpublisher.bookpublisher.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -22,7 +23,9 @@ public class RegistrationController {
     UserRepository userRepository;
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult, @ModelAttribute("confirmPassword") String confirmPassword) {
+    public @ResponseBody
+    ModelAndView createNewUser(@Valid User user, BindingResult bindingResult, @ModelAttribute("confirmPassword") String confirmPassword) {
+       System.out.println("printing user "+user);
         ModelAndView modelAndView = new ModelAndView();
         User userExist1 = userRepository.findByUserName(user.getUserName());
         User userExist2 = userRepository.findByEmail(user.getEmail());
@@ -40,23 +43,21 @@ public class RegistrationController {
         }
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("login");
-        } else {
+        }
+        else {
             List roles = new ArrayList();
 //            roles.add(new Role("ROLE_ADMIN"));
             roles.add(new Role("ROLE_USER"));
             user.setEnabled(true);
             user.setRoles(roles);
-
             System.out.println(user);
-
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-
             userRepository.save(user);
-
             modelAndView.addObject("successMessage", "User has been registered successfully. You can login now.");
             modelAndView.addObject("user", new User());
             modelAndView.setViewName("login");
         }
-        return modelAndView;
+       return modelAndView;
+
     }
 }

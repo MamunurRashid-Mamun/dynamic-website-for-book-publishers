@@ -99,6 +99,12 @@ form input:focus {
   width: 350px;
   color: #53e3a6;
 }
+#signUp input:focus {
+  background-color: white;
+  width: 100%;
+  color: #53e3a6;
+}
+
 form button {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -118,6 +124,10 @@ form button {
 form button:hover {
   background-color: #f5f7f9;
 }
+
+#signUp button {
+  width: 100%;
+  }
 a:link {
     text-decoration: none;
     text-decoration-color: darkred;
