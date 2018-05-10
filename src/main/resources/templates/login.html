@@ -21,7 +21,7 @@
             <button type="submit">Login</button>
             <br/>
             <br/>
-            <p>Don't have an account?<a data-toggle="modal" data-target="#myModal" href="">signUp</a></p>
+            <p>Don't have an account?<a id="signUpLink" data-toggle="modal" data-target="#myModal" href="">signUp</a></p>
         </form>
     </div>
 
@@ -55,25 +55,25 @@
                                th:field="*{userName}"
                                placeholder="User Name"
                                style="margin-top: 0px;"/>
-                        <label th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="text-danger"></label>
+                        <label id="invalidUser" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="text-danger"></label>
 
                         <input id="email" th:id="email" class="form-control" th:type="text" th:name="email" th:field="*{email}"
                                placeholder="Email"
                                style="margin-top: 0px;"/>
-                        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></label>
+                        <label id="invalidEmail" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></label>
 
                         <input id="password" th:id="password" class="form-control" th:type="password" th:name="password"
                                th:field="*{password}"
                                placeholder="Password"
                                style="margin-top: 0px;"/>
-                        <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></label>
+                        <label id="invalidPassword" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></label>
 
                         <input id="confirmPassword" th:id="confirmPassword" class="form-control" th:type="password" th:name="confirmPassword"
                                placeholder="Confirm Password"
                                style="margin-top: 0px;"/>
                         <label th:text="${confirmPasswordError}" class="text-danger"></label>
 
-                        <button id="" type="submit" class="btn btn-primary">Sign Up</button>
+                        <button onsubmit="myFunction()" id="sButton" type="submit" class="btn btn-primary">Sign Up</button>
 
                 </form>
             </div>
@@ -83,63 +83,5 @@
         </div>
     </div>
 </div>
-
-<script>
-
-
-    $(document).ready(function () {
-
-        $("#sButton").click(function (event) {
-
-            //stop submit the form, we will post it manually.
-            event.preventDefault();
-
-            fire_ajax_submit();
-
-        });
-
-    });
-
-    function fire_ajax_submit() {
-
-        // Get form
-        var form = $('#newF')[0];
-
-        var data = new FormData(form);
-        $("#sButton").prop("disabled", true);
-        var modal = document.getElementById('myModal');
-        modal.style.display="none";
-        $('body').removeClass().removeAttr('style');$('.modal-backdrop').remove();
-
-
-        $.ajax({
-            type: "POST",
-            url: "/signUp",
-            data: data,
-            //http://api.jquery.com/jQuery.ajax/
-            //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
-            processData: false, //prevent jQuery from automatically transforming the data into a query string
-            contentType: false,
-            cache: false,
-            timeout: 600000,
-            success: function (data) {
-
-                alert("Successfully Login Now");
-
-            },
-            error: function (e) {
-
-
-                $("#sButton").prop("disabled", false);
-
-            }
-        });
-
-    }
-</script>
-
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-<script src="css/js/index.js"></script>
 </body>
 </html>
