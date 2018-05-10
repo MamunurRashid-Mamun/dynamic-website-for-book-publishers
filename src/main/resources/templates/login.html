@@ -22,7 +22,7 @@
             <button type="submit">Login</button>
             <br/>
             <br/>
-            <p>Don't have an account?<a id="signUpLink" data-toggle="modal" data-target="#myModal" href="">signUp</a></p>
+            <p>Don't have an account?<a data-toggle="modal" data-target="#myModal" href="http://locahost:8585/registration">signUp</a></p>
         </form>
     </div>
 
@@ -38,51 +38,6 @@
         <li></li>
         <li></li>
     </ul>
-</div>
-
-
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Fill the Form</h4>
-            </div>
-            <div class="modal-body">
-                <form th:action="@{/registration}" method="post" th:object="${user}" id="signUp">
-                    <!-- Text input-->
-
-                        <input id="userName" th:id="userName" class="form-control" th:type="text" th:name="userName"
-                               th:field="*{userName}"
-                               placeholder="User Name"
-                               style="margin-top: 0px;"/>
-                        <label id="invalidUser" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="text-danger"></label>
-
-                        <input id="email" th:id="email" class="form-control" th:type="text" th:name="email" th:field="*{email}"
-                               placeholder="Email"
-                               style="margin-top: 0px;"/>
-                        <label id="invalidEmail" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></label>
-
-                        <input id="password" th:id="password" class="form-control" th:type="password" th:name="password"
-                               th:field="*{password}"
-                               placeholder="Password"
-                               style="margin-top: 0px;"/>
-                        <label id="invalidPassword" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></label>
-
-                        <input id="confirmPassword" th:id="confirmPassword" class="form-control" th:type="password" th:name="confirmPassword"
-                               placeholder="Confirm Password"
-                               style="margin-top: 0px;"/>
-                        <label th:text="${confirmPasswordError}" class="text-danger"></label>
-
-                        <button onsubmit="myFunction()" id="sButton" type="submit" class="btn btn-primary">Sign Up</button>
-
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            </div>
-        </div>
-    </div>
 </div>
 </body>
 </html>
