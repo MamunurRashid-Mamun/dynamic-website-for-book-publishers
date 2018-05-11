@@ -3,73 +3,135 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      layout:decorator="home">
+      layout:decorator="layout/headerfooter">
 <head>
     <title>Registration</title>
-    <style>
-        body {
-            background-image: url("/images/background2.jpg");
-        }
-
-    </style>
-    <!--&lt;!&ndash;<link href="/webjars/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet"/>&ndash;&gt;-->
-    <!--&lt;!&ndash;<link rel="stylesheet" href="css/loginStyle.css"/>&ndash;&gt;-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-    <!--<script type="application/javascript" src="css/js/jquery-3.2.1.js"></script>-->
+    <link rel="stylesheet" href="css/loginStyle.css"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+    <!-- Bootstrap core CSS -->
+    <link href="https://mdbootstrap.com/previews/docs/latest/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Material Design Bootstrap -->
+    <link href="https://mdbootstrap.com/previews/docs/latest/css/mdb.min.css" rel="stylesheet"/>
 
 </head>
 <body>
-
-<div class="container" layout:fragment="content">
-    <div class="col-md-4 col-md-offset-4">
-        <h2>Registration</h2>
+<!--start of navigation bar-->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar bg-primary">
+    <a class="navbar-brand" href="#">SiteName</a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="navbarSupportedContent-4" style="">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Publish Book</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown
+                </a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <form class="form-inline">
+                    <div class="md-form mt-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"/>
+                    </div>
+                </form>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link waves-effect waves-light" href="#">
+                    <i class="fa fa-envelope"></i> Contact
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light" href="#">
+                    <i class="fa fa-gear"></i> Settings</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user"></i> Profile </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                    <a class="dropdown-item waves-effect waves-light" href="#">My account</a>
+                    <a class="dropdown-item waves-effect waves-light" href="#">Log out</a>
+                </div>
+            </li>
+        </ul>
     </div>
-    <form th:action="@{/registration}" method="post" th:object="${user}">
-        <!-- Text input-->
-        <div class="form-group col-md-4 col-md-offset-4">
-            <label for="userName">User Name:</label>
-            <input id="userName" th:id="userName" class="form-control" th:type="text" th:name="userName"
+</nav>
+<!--end of the Navigation bar-->
+<div class="wrapper">
+    <div style="position:relative;z-index:1 alignment:center;" class="container">
+
+        <form class="form" th:action="@{/registration}" method="post" th:object="${user}">
+            <h2>Registration</h2>
+            <!-- Text input-->
+            <input id="userName" th:id="userName" th:type="text" th:name="userName"
                    th:field="*{userName}"
                    placeholder="User Name"
                    style="margin-top: 0px;"/>
             <label th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="text-danger"></label>
-        </div>
 
-        <!-- Text input-->
-        <div class="form-group col-md-4 col-md-offset-4">
-            <label for="email">Email:</label>
-            <input id="email" th:id="email" class="form-control" th:type="text" th:name="email" th:field="*{email}"
+            <!-- Text input-->
+            <input id="email" th:id="email" th:type="text" th:name="email" th:field="*{email}"
                    placeholder="Email"
                    style="margin-top: 0px;"/>
             <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></label>
-        </div>
-        <!-- Password input-->
-        <div class="form-group col-md-4 col-md-offset-4">
-            <label for="password">Password:</label>
-            <input id="password" th:id="password" class="form-control" th:type="password" th:name="password"
+            <!-- Password input-->
+            <input id="password" th:id="password" th:type="password" th:name="password"
                    th:field="*{password}"
                    placeholder="Password"
                    style="margin-top: 0px;"/>
             <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></label>
-        </div>
-        <!--Password Confirm-->
-        <!-- Text input-->
-        <div class="form-group col-md-4 col-md-offset-4">
-            <label for="confirmPassword">Confirm Password:</label>
-            <input id="confirmPassword" th:id="confirmPassword" class="form-control" th:type="password"
+            <!--Password Confirm-->
+            <!-- Text input-->
+            <input id="confirmPassword" th:id="confirmPassword" th:type="password"
                    th:name="confirmPassword"
+                   th:field="*{password}"
                    placeholder="Confirm Password"
                    style="margin-top: 0px;"/>
             <label th:text="${confirmPasswordError}" class="text-danger"></label>
-        </div>
-        <!-- Button -->
-        <div class="form-group col-md-4 col-md-offset-4">
+            <!-- Button -->
             <button id="" type="submit" class="btn btn-primary">Sign Up</button>
-        </div>
 
-    </form>
+        </form>
+
+    </div>
+
+    <ul style="position:initial; z-index:0; height:100%" class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
 </div>
+<!-- JQuery -->
+<script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/jquery-3.2.1.min.js"></script>
+<!-- Tooltips -->
+<script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/mdb.min.js"></script>
 </body>
 </html>
