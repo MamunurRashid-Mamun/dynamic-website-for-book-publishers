@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="utf-8"/>
@@ -73,32 +76,40 @@
         </ul>
     </div>
 </nav>
-   <!--end of the Navigation bar-->
+<!--end of the Navigation bar-->
+
+
+
+
 <!--Main layout-->
 <main>
 
     <div class="container-fluid">
-         <!--bubble background start-->
-    <div class="wrapper">
-        <ul class="bg-bubbles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </div>
+        <!--bubble background start-->
+        <div class="wrapper">
+            <ul class="bg-bubbles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
         <!--bubble background end-->
     </div>
 
 </main>
+
+<div layout:fragment="content">
+    <!--  Page content goes here -->
+</div>
 
 <!--Main layout-->
 
