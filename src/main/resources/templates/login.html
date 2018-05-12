@@ -72,15 +72,15 @@
 <div class="wrapper">
     <div style="position:relative;z-index:1; alignment:center;" class="container">
         <form class="form" method="post" action="/login">
-            <h1>Welcome</h1>
-            <label class="col-md-4 col-md-offset-4"><span th:utext="${successMessage}" style="color: #aa07b3"></span></label>
-            <input type="text" name="username" placeholder="Enter Username or Email"/>
-            <input type="password" name="password" placeholder="Password"/>
-            <label style="align-text:center;" th:if="${param.error}" class="text-danger" th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}">Invalid username or password.</label>
-            <br/>
-            <button type="submit">Login</button>
-            <br/>
-            <br/>
+             <h1>Welcome</h1>
+             <label class="col-md-4 col-md-offset-4"><span th:utext="${successMessage}" style="color: #aa07b3"></span></label>
+             <input type="text" name="username" placeholder="Enter Username or Email"/>
+             <input type="password" name="password" placeholder="Password"/>
+             <label style="align-text:center;" th:if="${param.error}" class="text-danger" th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}">Invalid username or password.</label>
+                <br/>
+                <button type="submit">Login</button>
+                <br/>
+                <br/>
             <p>Don't have an account? <a href="/registration">SignUp</a></p>
         </form>
     </div>

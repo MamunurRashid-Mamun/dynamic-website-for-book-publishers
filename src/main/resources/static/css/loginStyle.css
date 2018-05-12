@@ -126,9 +126,6 @@ body :-ms-input-placeholder {
   background-color: #f5f7f9;
 }
 
-#signUp button {
-  width: 100%;
-  }
 a:link {
     text-decoration: none;
     text-decoration-color: darkred;
@@ -145,6 +142,7 @@ a:hover {
 a:active {
     text-decoration: underline;
 }
+
 .bg-bubbles {
   position: absolute;
   top: 0;
