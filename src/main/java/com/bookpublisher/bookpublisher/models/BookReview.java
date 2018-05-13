@@ -5,23 +5,35 @@ import javax.persistence.*;
 @Entity
 public class BookReview {
     @Id
-    private int isbn;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    @ManyToOne
+    private Book book;
     private String review;
 
     public BookReview() {
     }
 
-    public BookReview(int isbn, String review) {
-        this.isbn = isbn;
+    public BookReview(int id, Book book, String review) {
+        this.id = id;
+        this.book = book;
         this.review = review;
     }
 
-    public int getIsbn() {
-        return isbn;
+    public int getId() {
+        return id;
     }
 
-    public void setIsbn(int isbn) {
-        this.isbn = isbn;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     public String getReview() {
@@ -35,7 +47,8 @@ public class BookReview {
     @Override
     public String toString() {
         return "BookReview{" +
-                "isbn=" + isbn +
+                "id=" + id +
+                ", book=" + book +
                 ", review='" + review + '\'' +
                 '}';
     }
