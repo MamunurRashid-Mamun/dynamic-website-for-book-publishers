@@ -7,16 +7,16 @@ public class BookReview {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @ManyToOne
-    private Book book;
+//    @ManyToOne
+    @Column(name = "review_isbn")
+    private String isbn;
     private String review;
 
     public BookReview() {
     }
 
-    public BookReview(int id, Book book, String review) {
-        this.id = id;
-        this.book = book;
+    public BookReview(String isbn, String review) {
+        this.isbn = isbn;
         this.review = review;
     }
 
@@ -28,12 +28,12 @@ public class BookReview {
         this.id = id;
     }
 
-    public Book getBook() {
-        return book;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getReview() {
@@ -48,7 +48,7 @@ public class BookReview {
     public String toString() {
         return "BookReview{" +
                 "id=" + id +
-                ", book=" + book +
+                ", isbn='" + isbn + '\'' +
                 ", review='" + review + '\'' +
                 '}';
     }

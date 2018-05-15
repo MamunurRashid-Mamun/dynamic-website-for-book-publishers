@@ -7,22 +7,19 @@ import java.util.List;
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "author_id")
     private long id;
     private String name;
     private String email;
     private String info;
-    @ManyToMany(mappedBy = "authors")
-    private List<Book> books;
 
     public Author() {
     }
 
-    public Author(long id, String name, String email, String info, List<Book> books) {
-        this.id = id;
+    public Author(String name, String email, String info) {
         this.name = name;
         this.email = email;
         this.info = info;
-        this.books = books;
     }
 
     public long getId() {
@@ -57,14 +54,6 @@ public class Author {
         this.info = info;
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
-
     @Override
     public String toString() {
         return "Author{" +
@@ -72,7 +61,6 @@ public class Author {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", info='" + info + '\'' +
-                ", books=" + books +
                 '}';
     }
 }

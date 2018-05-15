@@ -14,9 +14,12 @@ public class Book {
     private int price;
     private String category;
     private int rating;
-    @ManyToMany
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinTable(name = "Book_Authors", joinColumns = { @JoinColumn(name = "isbn") }, inverseJoinColumns = { @JoinColumn(name = "author_id") })
     private List<Author> authors;
-    @OneToMany
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
+    @JoinTable(name = "Book_Reviews", joinColumns = { @JoinColumn(name = "isbn") }, inverseJoinColumns = { @JoinColumn(name = "review_isbn") })
     private List<BookReview> reviews;
 
     public Book() {
