@@ -6,17 +6,17 @@ import javax.persistence.*;
 public class BookReview {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "review_id")
     private int id;
 //    @ManyToOne
-    @Column(name = "review_isbn")
-    private String isbn;
+//    @Column(name = "review_isbn")
+//    private String isbn;
     private String review;
 
     public BookReview() {
     }
 
-    public BookReview(String isbn, String review) {
-        this.isbn = isbn;
+    public BookReview(String review) {
         this.review = review;
     }
 
@@ -26,14 +26,6 @@ public class BookReview {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
     }
 
     public String getReview() {
@@ -48,7 +40,6 @@ public class BookReview {
     public String toString() {
         return "BookReview{" +
                 "id=" + id +
-                ", isbn='" + isbn + '\'' +
                 ", review='" + review + '\'' +
                 '}';
     }

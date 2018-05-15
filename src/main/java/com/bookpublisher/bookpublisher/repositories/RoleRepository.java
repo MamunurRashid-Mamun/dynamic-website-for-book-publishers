@@ -1,4 +1,4 @@
-package com.bookpublisher.bookpublisher.Repositories;
+package com.bookpublisher.bookpublisher.repositories;
 
 import com.bookpublisher.bookpublisher.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
