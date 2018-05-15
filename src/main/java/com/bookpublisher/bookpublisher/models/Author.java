@@ -1,7 +1,6 @@
 package com.bookpublisher.bookpublisher.models;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Author {

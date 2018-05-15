@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 /**
  * Created by Hp on 5/15/18.
  */
-@Transactional
+//@Transactional
 @Repository
 public interface BookRepository extends JpaRepository<Book,String> {
 

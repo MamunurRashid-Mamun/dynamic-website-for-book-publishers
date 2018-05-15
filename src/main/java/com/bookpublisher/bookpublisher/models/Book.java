@@ -6,6 +6,7 @@ import java.util.List;
 @Entity
 public class Book {
     @Id
+    @Column(name = "isbn")
     private String isbn;
     private String title;
     @Column(length = 1000)
@@ -14,12 +15,12 @@ public class Book {
     private int price;
     private String category;
     private int rating;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "Book_Authors", joinColumns = { @JoinColumn(name = "isbn") }, inverseJoinColumns = { @JoinColumn(name = "author_id") })
     private List<Author> authors;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
-    @JoinTable(name = "Book_Reviews", joinColumns = { @JoinColumn(name = "isbn") }, inverseJoinColumns = { @JoinColumn(name = "review_isbn") })
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "Book_Reviews", joinColumns = { @JoinColumn(name = "isbn") }, inverseJoinColumns = { @JoinColumn(name = "review_id") })
     private List<BookReview> reviews;
 
     public Book() {
