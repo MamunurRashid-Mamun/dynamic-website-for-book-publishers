@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="mainLayout">
+<head>
+    <title>Registration</title>
+    <link rel="stylesheet" href="css/loginStyle.css"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+    <!-- Bootstrap core CSS -->
+    <link href="https://mdbootstrap.com/previews/docs/latest/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Material Design Bootstrap -->
+    <link href="https://mdbootstrap.com/previews/docs/latest/css/mdb.min.css" rel="stylesheet"/>
+
+</head>
+<body>
+<div class="wrapper">
+    <div style="position:relative;z-index:1 alignment:center;" class="container" layout:fragment="content">
+
+        <!--<form class="form" th:action="@{/saveBook}" method="post" th:object="${book}">-->
+            <!--<input id="isbn" th:id="isbn" th:type="text" th:name="isbn" th:field="*{isbn}"-->
+                   <!--placeholder="Book ISBN" required/>-->
+            <!--<input id="title" th:id="title" th:type="text" th:name="title" th:field="*{title}"-->
+                   <!--placeholder="Book title" required/>-->
+            <!--<input id="authors" th:id="authors" th:type="text" th:name="authors" th:field="*{authors}"-->
+                   <!--placeholder="Authors" required/>-->
+            <!--<input id="description" th:id="description" th:type="" th:name="description" th:field="*{description}"-->
+                   <!--placeholder="Book Description" required/>-->
+            <!--<input id="edition" th:id="edition" th:type="text" th:name="edition" th:field="*{edition}"-->
+                   <!--placeholder="Edition" required/>-->
+            <!--<input id="price" th:id="price" th:type="price" th:name="price" th:field="*{price}"-->
+                   <!--placeholder="Price" required/>-->
+            <!--<input id="category" th:id="category" th:type="category" th:name="category" th:field="*{category}"-->
+                   <!--placeholder="Category" required/>-->
+            <!--<button id="" type="submit" class="btn btn-primary">Save</button>-->
+
+        <!--</form>-->
+        <form class="form" th:action="@{/saveBook}" method="post" th:object="${book}">
+            <h2>Save New Book</h2>
+            <input id="isbn" th:id="isbn" th:type="text" th:name="isbn" th:field="*{isbn}"
+                   placeholder="Book ISBN" required="true" th:value="${book.isbn}"/>
+            <input id="title" th:id="title" th:type="text" th:name="title" th:field="*{title}"
+                   placeholder="Book title" required="true"/>
+            <input id="authors" th:id="authors" th:type="text" th:name="authors" th:field="*{authors}"
+                   placeholder="Authors" required="true"/>
+            <input id="description" th:id="description" th:type="text" th:name="description" th:field="*{description}"
+                   placeholder="Book Description" required="true"/>
+            <input id="edition" th:id="edition" th:type="text" th:name="edition" th:field="*{edition}"
+                   placeholder="Edition" required="true"/>
+            <input id="price" th:id="price" th:type="price" th:name="price" th:field="*{price}"
+                   placeholder="Price" required="true"/>
+            <input id="category" th:id="category" th:type="category" th:name="category" th:field="*{category}"
+                   placeholder="Category" required="true"/>
+
+            <th:block th:each="i: ${#numbers.sequence(0, rows)}">
+                Author: <label th:text="${i+1}"></label><br/>
+
+                <label>Name:</label>
+                <input type="text" name="name"
+                       th:field="*{authors[__${i}__].name}" />
+
+                <label >Email:</label>
+                <input type="text" name="email"
+                       th:field="*{authors[__${i}__].email}" />
+
+                <label>Info:</label>
+                <input type="text" name="info"
+                       th:field="*{authors[__${i}__].info}" />
+            </th:block>
+            <a href="/increaseAuthor" th:href="@{/increaseAuthor(bookparam=${book})}">Add New Author</a>
+            <!-- Button -->
+            <button id="" type="submit" class="btn btn-primary">Save Book</button>
+
+        </form>
+
+    </div>
+
+    <ul style="position:initial; z-index:0; height:100%" class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+</div>
+<!-- JQuery -->
+<script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/jquery-3.2.1.min.js"></script>
+<!-- Tooltips -->
+<script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/mdb.min.js"></script>
+</body>
+</html>
