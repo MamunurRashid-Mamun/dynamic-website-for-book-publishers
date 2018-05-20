@@ -24,28 +24,17 @@ import java.util.List;
 public class PublishBookController {
     @Autowired
     BookRepository bookRepository;
+    Book tempBook;
     int rows = 0;
-//    @RequestMapping("/save")
-//    public void saveBook() {
-//        List<Author> authors = new ArrayList<Author>();
-//        authors.add(new Author("Momin","momin@gmail.com","Student of MBSTU"));
-//        authors.add(new Author("Mamun","mamun@gmail.com","Student of MBSTU"));
-//        List<BookReview> reviews = new ArrayList<BookReview>();
-//        reviews.add(new BookReview("Best book ever"));
-//        reviews.add(new BookReview("Medium level book"));
-//        Book book = new Book("123456","Java Book","Introduction to java","First",200,"Programming",8,authors,reviews);
-//        bookRepository.save(book);
-//        bookRepository.flush();
-//    }
-
 
     @RequestMapping(value = "/saveBook", method = RequestMethod.POST)
-    public String showSaveBookPage(@ModelAttribute Book book) {
-//        newBookRepository.save(newBookClass);
-//        newBookRepository.flush();
-        System.out.println(book);
-        rows = 0;
-        return "/home";
+    public ModelAndView showSaveBookPage(@ModelAttribute Book book) {
+        tempBook = book;
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("addAuthors");
+        modelAndView.addObject("rows",rows);
+        modelAndView.addObject("book", new Book());
+        return modelAndView;
     }
 
     @RequestMapping(value = "/saveBook")
@@ -59,11 +48,22 @@ public class PublishBookController {
     }
 
     @RequestMapping(value = "/increaseAuthor")
-    public ModelAndView increaseAuthor(RedirectAttributes redirectAttributes, @Param("bookParam") Book book) {
+    public ModelAndView increaseAuthor() {
         ModelAndView modelAndView = new ModelAndView();
-        System.out.println(rows++);
-        redirectAttributes.addAttribute("book", book);
-        modelAndView.setViewName("redirect:/saveBook");
+        modelAndView.addObject("book",new Book());
+        modelAndView.addObject("rows",rows++);
+        modelAndView.setViewName("addAuthors");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/saveAuthors", method = RequestMethod.POST)
+    public ModelAndView saveAuthors(@ModelAttribute Book book) {
+        ModelAndView modelAndView = new ModelAndView();
+        tempBook.setAuthors(book.getAuthors());
+        rows = 0;
+        System.out.println(tempBook);
+//        bookRepository.save(tempBook);
+        modelAndView.setViewName("home");
         return modelAndView;
     }
 
