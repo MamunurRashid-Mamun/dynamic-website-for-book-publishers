@@ -7,6 +7,7 @@ import com.bookpublisher.bookpublisher.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,14 +26,14 @@ public class PublishBookController {
     @Autowired
     BookRepository bookRepository;
     Book tempBook;
-    int rows = 0;
 
     @RequestMapping(value = "/saveBook", method = RequestMethod.POST)
-    public ModelAndView showSaveBookPage(@ModelAttribute Book book) {
+    public ModelAndView showSaveBookPage(@ModelAttribute Book book, @ModelAttribute("numberOfAuthor") int rows) {
         tempBook = book;
+        System.out.println(rows);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("addAuthors");
-        modelAndView.addObject("rows",rows);
+        modelAndView.addObject("rows",rows-1);
         modelAndView.addObject("book", new Book());
         return modelAndView;
     }
@@ -42,28 +43,18 @@ public class PublishBookController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("addBook");
         modelAndView.addObject("book", book);
-        modelAndView.addObject("rows",rows);
         modelAndView.addObject("book", new Book());
         return modelAndView;
     }
 
-    @RequestMapping(value = "/increaseAuthor")
-    public ModelAndView increaseAuthor() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("book",new Book());
-        modelAndView.addObject("rows",rows++);
-        modelAndView.setViewName("addAuthors");
-        return modelAndView;
-    }
 
     @RequestMapping(value = "/saveAuthors", method = RequestMethod.POST)
     public ModelAndView saveAuthors(@ModelAttribute Book book) {
         ModelAndView modelAndView = new ModelAndView();
         tempBook.setAuthors(book.getAuthors());
-        rows = 0;
         System.out.println(tempBook);
 //        bookRepository.save(tempBook);
-        modelAndView.setViewName("home");
+        modelAndView.setViewName("redirect:/");
         return modelAndView;
     }
 

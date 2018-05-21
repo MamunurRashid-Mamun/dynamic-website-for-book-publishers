@@ -29,10 +29,12 @@
                    placeholder="Book Description" required="true"/>
             <input id="edition" th:id="edition" th:type="text" th:name="edition" th:field="*{edition}"
                    placeholder="Edition" required="true"/>
-            <input id="price" th:id="price" th:type="price" th:name="price" th:field="*{price}"
+            <input id="price" th:id="price" th:type="number" th:name="price"
                    placeholder="Price" required="true"/>
-            <input id="category" th:id="category" th:type="category" th:name="category" th:field="*{category}"
+            <input id="category" th:id="category" th:type="text" th:name="category" th:field="*{category}"
                    placeholder="Category" required="true"/>
+            <input id="numberOfAuthor" th:id="numberOfAuthor" th:type="number" th:name="numberOfAuthor"
+                   placeholder="Number of Author" required="true"/>
             <!-- Button -->
             <button id="" type="submit" class="btn btn-primary">Next</button>
 
