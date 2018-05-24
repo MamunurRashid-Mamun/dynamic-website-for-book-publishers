@@ -286,23 +286,9 @@
                                     <p class="text-center">You can publish your book here. Create a profile for your book and advertise it.</p>
 
                             </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-4" th:each="book,iterator : ${books}">
+                            <div >
 
-                                <div class="card">
-                                    <input th:hidden="${book.isbn}" th:name="isbn"/>
-                                    <a href="#"><img class="card-img-top" src="http://placehold.it/250x250"
-                                                     style="width:100%"/></a>
-                                    <div class="namecontainer">
-                                        <h4>
-                                            <a th:href="@{/bookDetails(isbn=${book.isbn})}" th:text="${book.title}">Item One</a>
-                                        </h4>
-                                        <h5 th:text="${'$' + book.price}">$24.99</h5>
-                                        <p th:text="${book.category}">Lorem ipsum dolor sit amet</p>
-                                    </div>
-                                    <div class="namecontainer">
-                                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                    </div>
-                                </div>
+                                <h1>Book Details will resides here</h1>
 
                             </div>
 
