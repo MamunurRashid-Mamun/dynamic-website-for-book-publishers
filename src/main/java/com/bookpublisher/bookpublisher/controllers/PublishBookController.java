@@ -30,7 +30,6 @@ public class PublishBookController {
     @RequestMapping(value = "/saveBook", method = RequestMethod.POST)
     public ModelAndView showSaveBookPage(@ModelAttribute Book book, @ModelAttribute("numberOfAuthor") int rows) {
         tempBook = book;
-        System.out.println(rows);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("addAuthors");
         modelAndView.addObject("rows",rows-1);
