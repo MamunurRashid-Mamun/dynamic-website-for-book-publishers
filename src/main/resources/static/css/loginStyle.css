@@ -68,6 +68,37 @@
   width: 350px;
   color: #53e3a6;
 }
+
+/*textarea style*/
+.form textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: 0;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 300px;
+    border-radius: 3px;
+    padding: 10px 15px;
+    margin: 0 auto 10px auto;
+    display: block;
+    text-align: center;
+
+    color: white;
+    -webkit-transition-duration: 0.25s;
+    transition-duration: 0.25s;
+    font-weight: 300;
+}
+.form textarea:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+.form textarea:focus {
+    background-color: white;
+    width: 350px;
+    color: #53e3a6;
+}
+
+
 #signUp input:focus {
   background-color: white;
   width: 100%;

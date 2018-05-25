@@ -6,15 +6,17 @@ import javax.persistence.*;
 public class BookImage {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "image_id")
+    @Column(name = "book_image_id")
     private long imageId;
     private String imageTitle;
+    private String previewImageTitle;
 
     public BookImage() {
     }
 
-    public BookImage(String imageTitle) {
+    public BookImage(String imageTitle, String previewImageTitle) {
         this.imageTitle = imageTitle;
+        this.previewImageTitle = previewImageTitle;
     }
 
     public long getImageId() {
@@ -33,11 +35,20 @@ public class BookImage {
         this.imageTitle = imageTitle;
     }
 
+    public String getPreviewImageTitle() {
+        return previewImageTitle;
+    }
+
+    public void setPreviewImageTitle(String previewImageTitle) {
+        this.previewImageTitle = previewImageTitle;
+    }
+
     @Override
     public String toString() {
         return "BookImage{" +
                 "imageId=" + imageId +
                 ", imageTitle='" + imageTitle + '\'' +
+                ", previewImageTitle='" + previewImageTitle + '\'' +
                 '}';
     }
 }

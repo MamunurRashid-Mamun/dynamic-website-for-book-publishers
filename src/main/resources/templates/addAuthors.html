@@ -29,8 +29,11 @@
                 <input type="text" name="email"
                        th:field="*{authors[__${i}__].email}" placeholder="Email"/>
 
-                <input type="text" name="info"
-                       th:field="*{authors[__${i}__].info}" placeholder="Information"/>
+                <textarea rows="5" cols="25" type="text" name="info"
+                          th:field="*{authors[__${i}__].info}" placeholder="Information" ></textarea>
+
+                <input id="authorImage" th:id="authorImage" th:type="file" th:name="authorImage" th:field="*{authors[__${i}__].authorImage}"
+                       placeholder="Preview Image" required="true"/>
             </th:block>
             <!-- Button -->
             <button id="" type="submit" class="btn btn-primary">Save</button>

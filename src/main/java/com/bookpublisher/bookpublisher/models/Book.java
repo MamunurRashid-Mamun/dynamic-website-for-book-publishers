@@ -23,18 +23,14 @@ public class Book {
     @JoinTable(name = "Book_Reviews", joinColumns = { @JoinColumn(name = "isbn") }, inverseJoinColumns = { @JoinColumn(name = "review_id") })
     private List<BookReview> reviews;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "book_image_id")
+    private BookImage bookImage;
+
     public Book() {
     }
 
-    public Book(String isbn,
-                String title,
-                String description,
-                String edition,
-                int price,
-                String category,
-                int rating,
-                List<Author> authors,
-                List<BookReview> reviews) {
+    public Book(String isbn, String title, String description, String edition, int price, String category, int rating, List<Author> authors, List<BookReview> reviews, BookImage bookImage) {
         this.isbn = isbn;
         this.title = title;
         this.description = description;
@@ -44,6 +40,7 @@ public class Book {
         this.rating = rating;
         this.authors = authors;
         this.reviews = reviews;
+        this.bookImage = bookImage;
     }
 
     public String getIsbn() {
@@ -118,6 +115,14 @@ public class Book {
         this.reviews = reviews;
     }
 
+    public BookImage getBookImage() {
+        return bookImage;
+    }
+
+    public void setBookImage(BookImage bookImage) {
+        this.bookImage = bookImage;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -130,6 +135,7 @@ public class Book {
                 ", rating=" + rating +
                 ", authors=" + authors +
                 ", reviews=" + reviews +
+                ", bookImage=" + bookImage +
                 '}';
     }
 }

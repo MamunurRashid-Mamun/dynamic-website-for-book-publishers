@@ -25,14 +25,20 @@
                    placeholder="Book ISBN" required="true" th:value="${book.isbn}"/>
             <input id="title" th:id="title" th:type="text" th:name="title" th:field="*{title}"
                    placeholder="Book title" required="true"/>
-            <input id="description" th:id="description" th:type="text" th:name="description" th:field="*{description}"
-                   placeholder="Book Description" required="true"/>
+            <textarea rows="5" cols="25" id="description" th:id="description" th:type="text" th:name="description" th:field="*{description}"
+                      placeholder="Book Description" required="true" ></textarea>
             <input id="edition" th:id="edition" th:type="text" th:name="edition" th:field="*{edition}"
                    placeholder="Edition" required="true"/>
             <input id="price" th:id="price" th:type="number" th:name="price"
                    placeholder="Price" required="true"/>
             <input id="category" th:id="category" th:type="text" th:name="category" th:field="*{category}"
                    placeholder="Category" required="true"/>
+
+            <input id="bookImage" th:id="bookImage" th:type="file" th:name="imageTitle" th:field="*{bookImage.imageTitle}"
+                   placeholder="Main Image" required="true"/>
+            <input id="previewImage" th:id="previewImage" th:type="file" th:name="previewImageTitle" th:field="*{bookImage.previewImageTitle}"
+                   placeholder="Preview Image" required="true"/>
+
             <input id="numberOfAuthor" th:id="numberOfAuthor" th:type="number" th:name="numberOfAuthor"
                    placeholder="Number of Author" required="true"/>
             <!-- Button -->
