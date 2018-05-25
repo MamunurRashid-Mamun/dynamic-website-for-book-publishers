@@ -10,16 +10,14 @@ public class Author {
     private long id;
     private String name;
     private String email;
-    private String authorImage;
     private String info;
 
     public Author() {
     }
 
-    public Author(String name, String email, String authorImage, String info) {
+    public Author(String name, String email, String info) {
         this.name = name;
         this.email = email;
-        this.authorImage = authorImage;
         this.info = info;
     }
 
@@ -55,21 +53,12 @@ public class Author {
         this.info = info;
     }
 
-    public String getAuthorImage() {
-        return authorImage;
-    }
-
-    public void setAuthorImage(String authorImage) {
-        this.authorImage = authorImage;
-    }
-
     @Override
     public String toString() {
         return "Author{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", authorImage='" + authorImage + '\'' +
                 ", info='" + info + '\'' +
                 '}';
     }

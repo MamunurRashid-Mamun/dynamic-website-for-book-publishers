@@ -66,8 +66,8 @@
 
                                 <div class="card">
                                     <input th:hidden="${book.isbn}" th:name="isbn"/>
-                                    <a th:href="@{/bookDetails(isbn=${book.isbn})}"><img class="card-img-top" src="http://placehold.it/250x250"
-                                                     style="width:100%"/></a>
+                                    <a th:href="@{/bookDetails(isbn=${book.isbn})}"><img class="card-img-top"
+                                                                                         th:src="@{'/uploads/' + ${book.bookImage.imageTitle}}" style="width:100%"/></a>
                                     <div class="namecontainer">
                                         <h4>
                                             <a th:href="@{/bookDetails(isbn=${book.isbn})}" th:text="${book.title}">Item One</a>

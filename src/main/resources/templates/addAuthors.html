@@ -19,7 +19,7 @@
 <div class="wrapper">
     <div style="position:relative;z-index:1 alignment:center;" class="container" layout:fragment="content">
 
-        <form class="form" th:action="@{/saveAuthors}" method="post" th:object="${book}">
+        <form class="form" th:action="@{/saveAuthors}" method="post" th:object="${book}" enctype="multipart/form-data">
 
             <th:block th:each="i: ${#numbers.sequence(0, rows)}">
                 Information for Author: <label th:text="${i+1}"></label><br/>
@@ -32,8 +32,8 @@
                 <textarea rows="5" cols="25" type="text" name="info"
                           th:field="*{authors[__${i}__].info}" placeholder="Information" ></textarea>
 
-                <input id="authorImage" th:id="authorImage" th:type="file" th:name="authorImage" th:field="*{authors[__${i}__].authorImage}"
-                       placeholder="Preview Image" required="true"/>
+                <!--<input id="authorImage" th:id="authorImage" th:type="file" th:name="authorImage" th:field="*{authors[__${i}__].authorImage}"-->
+                       <!--placeholder="Preview Image" required="true"/>-->
             </th:block>
             <!-- Button -->
             <button id="" type="submit" class="btn btn-primary">Save</button>

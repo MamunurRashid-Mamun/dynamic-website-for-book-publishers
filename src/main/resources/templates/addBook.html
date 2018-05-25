@@ -5,7 +5,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorator="mainLayout">
 <head>
-    <title>Registration</title>
+    <title>Add Book</title>
     <link rel="stylesheet" href="css/loginStyle.css"/>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
@@ -19,7 +19,7 @@
 <div class="wrapper">
     <div style="position:relative;z-index:1 alignment:center;" class="container" layout:fragment="content">
 
-        <form class="form" th:action="@{/saveBook}" method="post" th:object="${book}">
+        <form class="form" th:action="@{/saveBook}" method="post" th:object="${book}" enctype="multipart/form-data">
             <h2>Save New Book</h2>
             <input id="isbn" th:id="isbn" th:type="text" th:name="isbn" th:field="*{isbn}"
                    placeholder="Book ISBN" required="true" th:value="${book.isbn}"/>
@@ -34,10 +34,8 @@
             <input id="category" th:id="category" th:type="text" th:name="category" th:field="*{category}"
                    placeholder="Category" required="true"/>
 
-            <input id="bookImage" th:id="bookImage" th:type="file" th:name="imageTitle" th:field="*{bookImage.imageTitle}"
-                   placeholder="Main Image" required="true"/>
-            <input id="previewImage" th:id="previewImage" th:type="file" th:name="previewImageTitle" th:field="*{bookImage.previewImageTitle}"
-                   placeholder="Preview Image" required="true"/>
+            <input type="file" name="imageFile" required="true" accept="image/*"/>
+            <input type="file" name="previewImageFile" required="true" accept="image/*"/>
 
             <input id="numberOfAuthor" th:id="numberOfAuthor" th:type="number" th:name="numberOfAuthor"
                    placeholder="Number of Author" required="true"/>
