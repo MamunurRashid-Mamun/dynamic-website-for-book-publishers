@@ -55,7 +55,7 @@
   display: block;
   text-align: center;
 
-  color: white;
+  color: black;
    -webkit-transition-duration: 0.25s;
           transition-duration: 0.25s;
   font-weight: 300;
@@ -66,7 +66,7 @@
 .form input:focus {
   background-color: white;
   width: 350px;
-  color: #53e3a6;
+  color: black;
 }
 
 /*textarea style*/
@@ -84,7 +84,7 @@
     display: block;
     text-align: center;
 
-    color: white;
+    color: black;
     -webkit-transition-duration: 0.25s;
     transition-duration: 0.25s;
     font-weight: 300;
@@ -95,14 +95,14 @@
 .form textarea:focus {
     background-color: white;
     width: 350px;
-    color: #53e3a6;
+    color: black;
 }
 
 
 #signUp input:focus {
   background-color: white;
   width: 100%;
-  color: #53e3a6;
+  color: black;
 }
 
 .form button {
@@ -113,7 +113,7 @@
   background-color: white;
   border: 0;
   padding: 10px 15px;
-  color: #53e3a6;
+  color: black;
   border-radius: 3px;
   width: 150px;
   cursor: pointer;
