@@ -7,6 +7,7 @@
 <head>
     <title>Details</title>
     <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="css/loginStyle.css"/>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
@@ -16,7 +17,8 @@
     <link href="https://mdbootstrap.com/previews/docs/latest/css/mdb.min.css" rel="stylesheet"/>
     <link href="css/shop-homepage.css" rel="stylesheet"/>
 
-    <link href="http://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link href="http://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" rel="stylesheet"/>
 
     <link href="http://getbootstrap.com/docs/4.0/assets/css/docs.min.css" rel="stylesheet"/>
@@ -25,119 +27,104 @@
 </head>
 <body>
 <div class="wrapper">
-    <div style="position:relative;z-index:1; alignment:center; width: 100%;" layout:fragment="content">
+    <div style="position:relative;z-index:0; alignment:center; width: 100%;" layout:fragment="content">
 
-        <div class="container-fluid" style="padding-top: 50px; padding-left: 50px;" th:object="${book}">
-            <div class="row" >
-                <div class="col-md-1 col-sm-2">
+        <div class="container-fluid" style="padding-top: 20px;" th:object="${book}">
 
-                </div>
+            <div class="row  justify-content-center" style="background-color: rgba(205,255,224,0.6); padding: 20px; margin: 10px;">
                 <!--Book information Section-->
-                <div class="col-md-10 col-sm-8" style="background-color: whitesmoke">
-
-                    <div class="row" style="padding: 10px; margin: 10px;">
-                        <div class="col-md-5">
-                            <img class="img-fluid" th:src="@{'/uploads/'+${book.bookImage.previewImageTitle}}" style="border: 1px solid black;
-                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); width: 260px; height: 372px;"/>
-                        </div>
-
-                        <div class="col-md-7" style="padding-top: 40px">
-                            <h1 th:text="${book.title}">Computer Programming</h1>
-                            <h3>Author: <a href="#" th:each="author,iterator : ${book.authors}" th:text="!${iterator.last} ? ${author.name} + ', ': ${author.name}">Mamunur Rashid Mamun</a></h3>
-                            <h4><b th:text="${'TK. ' + book.price}">TK 500</b></h4>
-                            <h4 th:text="${'Category: ' + book.category}">Category: Programming</h4>
-                            <h4 th:text="${'Rating: ' + book.rating + '/10'}">Rating: 3/5</h4>
-                            <h3><a href="#"><i class="fa fa-heart-o"></i> Add to Booklist</a></h3>
-                        </div>
-                    </div>
+                <div class="col-md-5">
+                    <img class="img-fluid float-right" src="/home/mamun/Pictures/previewImage for bookpublisher.jpg"
+                         th:src="@{'/uploads/'+${book.bookImage.previewImageTitle}}" style="border: 1px solid black;
+                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"/>
                 </div>
-                <div class="col-md-1 col-sm-2">
 
+                <div class="col-md-7">
+                    <p style="font-size: xx-large;" th:text="${book.title}">Computer Programming Computer</p>
+                    <p style="font-size: x-large;">Author: <a th:each="author,iterator : ${book.authors}"
+                                                              th:href="@{/authorDetails(authorId=${author.id})}"
+                                                              th:text="!${iterator.last} ? ${author.name} + ', ': ${author.name}">Mamunur Rashid Mamun</a></p>
+                    <p style="font-size: x-large;"><b th:text="${'$ ' + book.price}">TK 500</b></p>
+                    <p style="font-size: x-large;" th:text="${'Category: ' + book.category}">Category: Programming</p>
+                    <!--<p style="font-size: x -large;" th:text="${'Rating: ' + book.rating + '/10'}">Rating: 3/5</p>-->
+                    <p style="font-size: x-large;"><a href="#"><i class="fa fa-heart-o"></i> Add to Booklist</a></p>
+                </div>
+
+            </div>
+
+
+            <!--Book Description Section-->
+            <div class="row "
+                 style="background-color: rgba(205,255,224,0.6); margin:10px;">
+
+                <div style="padding: 20px;">
+                    <h2>Description:</h2>
+                    <p style="font-size: medium; text-align: left;" th:text="${book.description}">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+                        but also the leap into electronic typesetting, remaining essentially unchanged. It was
+                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                        and more recently with desktop publishing software like Aldus PageMaker including versions of
+                        Lorem Ipsum.
+                    </p>
                 </div>
             </div>
 
-            <div class="row" >
-                <div class="col-md-1 col-sm-2">
 
-                </div>
-                <!--Book Description Section-->
-                <div class="col-md-10 col-md-offset-1" style="background-color: ghostwhite; margin-top: 20px; margin-bottom: 20px">
+            <div class="justify-content-center"
+                 style="background-color: rgba(205,255,224,0.6); margin:10px; padding:20px">
 
-                    <div class="row" style="padding: 10px; margin: 10px;">
-
-                        <div class="col-md-12">
-                            <h2>Description:</h2>
-                            <p style="font-size: medium" th:text="${book.description}">
-
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-1 col-sm-2">
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-1 col-sm-2">
-
-                </div>
                 <!--Book Reviews Section-->
-                <div class="col-md-10 col-md-offset-1" style="background-color: ghostwhite; margin-top: 20px; margin-bottom: 20px">
-
-                    <div class="row" style="padding: 10px; margin: 10px;">
-
-                        <div class="col-md-12">
-                            <h1>Reviews:</h1>
-                            <hr/>
-                            <div sec:authorize="isAuthenticated()">
-                                <form th:action="@{/writeReview(isbn=${book.isbn})}" th:method="post">
-                                    <label>Write Review:</label><br/>
-                                    <textarea rows="4" cols="80" name="review" style="padding: 5px; font-size: medium"></textarea><br/>
-                                    <button class="btn btn-primary" type="submit">Submit</button>
-                                </form>
-                            </div>
-                            <div sec:authorize="isAnonymous()">
-                                <h3>For writing review you must be logged in</h3>
-                                <a th:href="@{/login}"><button class="btn btn-primary">Login</button></a>
-                            </div>
-                            <hr/>
-
-                            <th:block th:each="review, iterator : ${book.reviews}">
-                                <h5 th:text="${review.reviewer}"><b>Mamunur Rashid</b></h5>
-                                <p th:text="${review.review}">
-                                    Here review will reside
-                                </p>
-                                <hr/>
-                            </th:block>
-
-
-                        </div>
+                    <div>
+                        <h1>Reviews:</h1>
+                        <hr/>
                     </div>
+                    <div sec:authorize="isAuthenticated()">
+                        <form th:action="@{/writeReview(isbn=${book.isbn})}" th:method="post">
+                            <label>Write Review:</label><br/>
+                            <textarea class="form-control" rows="4" cols="80" name="review"
+                                      style="padding: 5px; font-size: medium;
+                                      background-color: rgba(255, 255, 255, 0.4);
+                                      border: 1px solid black"></textarea><br/>
+                            <button class="btn btn-primary float-right" type="submit">Submit</button>
+                        </form>
+                    </div>
+                    <div sec:authorize="isAnonymous()">
+                        <h3>For writing review you must be logged in</h3>
+                        <a th:href="@{/login}">
+                            <button class="btn btn-primary">Login</button>
+                        </a>
+                    </div>
+                    <br/><br/><br/><br/><hr/>
 
-                </div>
-                <div class="col-md-1 col-sm-2">
+                    <th:block th:each="review, iterator : ${book.reviews}">
+                        <h5 th:text="${review.reviewer}"><b>Mamunur Rashid</b></h5>
+                        <p th:text="${review.review}">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        </p>
+                        <hr/>
+                    </th:block>
 
-                </div>
             </div>
-            <!-- /.row -->
+
         </div>
 
 
     </div>
 
     <!--<ul style="position:initial; z-index:0; height:100%" class="bg-bubbles">-->
-        <!--<li></li>-->
-        <!--<li></li>-->
-        <!--<li></li>-->
-        <!--<li></li>-->
-        <!--<li></li>-->
-        <!--<li></li>-->
-        <!--<li></li>-->
-        <!--<li></li>-->
-        <!--<li></li>-->
-        <!--<li></li>-->
+    <!--<li></li>-->
+    <!--<li></li>-->
+    <!--<li></li>-->
+    <!--<li></li>-->
+    <!--<li></li>-->
+    <!--<li></li>-->
+    <!--<li></li>-->
+    <!--<li></li>-->
+    <!--<li></li>-->
+    <!--<li></li>-->
     <!--</ul>-->
 
 </div>
