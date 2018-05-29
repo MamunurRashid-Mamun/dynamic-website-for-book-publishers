@@ -20,35 +20,53 @@
     <div style="position:relative;z-index:1 alignment:center;" class="container" layout:fragment="content">
 
         <form class="form" th:action="@{/registration}" method="post" th:object="${user}">
-            <h2>Registration</h2>
-            <!-- Text input-->
-            <input id="userName" th:id="userName" th:type="text" th:name="userName"
-                   th:field="*{userName}"
-                   placeholder="User Name"
-                   style="margin-top: 0px;"/>
-            <label th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="text-danger"></label>
 
             <!-- Text input-->
-            <input id="email" th:id="email" th:type="text" th:name="email" th:field="*{email}"
-                   placeholder="Email"
-                   style="margin-top: 0px;"/>
-            <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></label>
-            <!-- Password input-->
-            <input id="password" th:id="password" th:type="password" th:name="password"
-                   th:field="*{password}"
-                   placeholder="Password"
-                   style="margin-top: 0px;"/>
-            <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></label>
-            <!--Password Confirm-->
-            <!-- Text input-->
-            <input id="confirmPassword" th:id="confirmPassword" th:type="password"
-                   th:name="confirmPassword"
-                   placeholder="Confirm Password"
-                   style="margin-top: 0px;"/>
-            <label th:text="${confirmPasswordError}" class="text-danger"></label>
-            <br/>
-            <!-- Button -->
-            <button id="" type="submit" class="btn btn-primary">Sign Up</button>
+            <div class="form-row" style="margin-bottom: 10px;">
+
+                <div class="col-md-6 offset-md-3 text-center">
+                    <h2>Registration</h2>
+                    <div class="form-group">
+                        <input class="form-control" id="userName"  th:id="userName" th:type="text" th:name="userName"
+                               th:field="*{userName}"
+                               placeholder="User Name"
+                               style="margin-top: 0px;"/>
+                        <label th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"
+                               class="text-danger"></label>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" id="email" th:id="email" th:type="text" th:name="email" th:field="*{email}"
+                               placeholder="Email"
+                               style="margin-top: 0px;"/>
+                        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></label>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- Password input-->
+                        <input class="form-control" id="password" th:id="password" th:type="password" th:name="password"
+                               th:field="*{password}"
+                               placeholder="Password"
+                               style="margin-top: 0px;"/>
+                        <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                               class="text-danger"></label>
+                    </div>
+
+                    <div class="form-group">
+                        <!--Password Confirm-->
+                        <!-- Text input-->
+                        <input class="form-control" id="confirmPassword" th:id="confirmPassword" th:type="password"
+                               th:name="confirmPassword"
+                               placeholder="Confirm Password"
+                               style="margin-top: 0px;"/>
+                        <p th:text="${confirmPasswordError}" class="text-danger"></p>
+                    </div>
+                    <div class="form-group">
+                        <!-- Button -->
+                        <button type="submit" class="btn btn-primary float-right">Sign Up</button>
+                    </div>
+                </div>
+            </div>
 
         </form>
 

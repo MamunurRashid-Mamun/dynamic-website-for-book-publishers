@@ -17,27 +17,39 @@
 </head>
 <body>
 <div class="wrapper">
-    <div style="position:relative;z-index:1 alignment:center;" class="container" layout:fragment="content">
+    <div style="position:relative;z-index:1; alignment:center;" class="container" layout:fragment="content">
 
         <form class="form" th:action="@{/saveAuthors}" method="post" th:object="${book}" enctype="multipart/form-data">
 
             <th:block th:each="i: ${#numbers.sequence(0, rows)}">
-                Information for Author: <label th:text="${i+1}"></label><br/>
-                <input type="text" name="name"
-                       th:field="*{authors[__${i}__].name}" placeholder="Name"/>
+                <div class="form-row" style="margin-bottom: 10px;">
+                    <div class="col-md-6 offset-md-3 text-left" style="background-color: rgba(220,233,225,0.6); padding: 10px; margin-bottom: 10px;">
+                        Information for Author: <label th:text="${i+1}"></label><br/>
+                        <div class="form-group">
+                            <label>Name:</label>
+                            <input class="form-control" type="text" name="name"
+                                   th:field="*{authors[__${i}__].name}" placeholder="Name"/>
+                        </div>
 
-                <input type="text" name="email"
-                       th:field="*{authors[__${i}__].email}" placeholder="Email"/>
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input class="form-control" type="text" name="email"
+                                   th:field="*{authors[__${i}__].email}" placeholder="Email"/>
+                        </div>
 
-                <textarea rows="5" cols="25" type="text" name="info"
-                          th:field="*{authors[__${i}__].info}" placeholder="Information" ></textarea>
+                        <div class="form-group">
+                            <label>Information:</label>
+                        <textarea class="form-control" rows="5" cols="25" type="text" name="info"
+                                  th:field="*{authors[__${i}__].info}" placeholder="Information"></textarea>
+                        </div>
+                    </div>
 
-                <!--<input id="authorImage" th:id="authorImage" th:type="file" th:name="authorImage" th:field="*{authors[__${i}__].authorImage}"-->
-                       <!--placeholder="Preview Image" required="true"/>-->
+                </div>
+
             </th:block>
-            <!-- Button -->
-            <button id="" type="submit" class="btn btn-primary">Save</button>
-
+            <div class="col-md-6 offset-md-2 justify-content-center" style="margin-bottom: 20px;">
+                <button type="submit" class="btn btn-primary btn-block">Save</button>
+            </div>
         </form>
 
     </div>
