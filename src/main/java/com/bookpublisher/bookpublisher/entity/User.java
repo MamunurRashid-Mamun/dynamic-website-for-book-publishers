@@ -1,5 +1,6 @@
 package com.bookpublisher.bookpublisher.entity;
 
+import com.bookpublisher.bookpublisher.models.Book;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -34,6 +35,10 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
     private List<Role> roles;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_books", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "isbn") })
+    private List<Book> bookList;
 
     public User() {
     }
@@ -94,6 +99,14 @@ public class User {
         this.roles = roles;
     }
 
+    public List<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -103,6 +116,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", enabled=" + enabled +
                 ", roles=" + roles +
+                ", bookList=" + bookList +
                 '}';
     }
 }
