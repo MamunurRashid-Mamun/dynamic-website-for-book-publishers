@@ -21,7 +21,17 @@ public class SearchController {
         ModelAndView modelAndView = new ModelAndView();
 
         List<Book> books = bookRepository.findAllByTitleContainingIgnoreCaseOrCategoryContainingIgnoreCase(searchValue,searchValue);
-        modelAndView.addObject("books",books);
+        List<Book> booksByAuthorName = bookRepository.findByAuthorName("%"+searchValue+"%");
+        if (!books.isEmpty()) {
+            modelAndView.addObject("books",books);
+        } else if (!booksByAuthorName.isEmpty()){
+            modelAndView.addObject("books",booksByAuthorName);
+        } else {
+            modelAndView.addObject("bookNotFoundMessage", "No Book Found of term '" + searchValue + "'");
+        }
+
+
+
 
         List<String> categories = bookRepository.findDistinctCategory();
         modelAndView.addObject("categories",categories);

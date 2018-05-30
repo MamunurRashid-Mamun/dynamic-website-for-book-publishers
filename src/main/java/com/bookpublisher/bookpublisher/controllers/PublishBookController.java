@@ -10,10 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -29,6 +26,7 @@ import java.util.List;
  * Created by Hp on 5/15/18.
  */
 @Controller
+@ResponseBody
 public class PublishBookController {
     private static String UPLOADED_FOLDER = "uploads/";
     @Autowired
@@ -44,10 +42,21 @@ public class PublishBookController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/saveBook", method = RequestMethod.POST)
+    @RequestMapping(value = "/saveBook", consumes = "multipart/*", method = RequestMethod.POST)
     public ModelAndView showSaveBookPage(@ModelAttribute Book book, @ModelAttribute("numberOfAuthor") int rows,
                                          @RequestParam("imageFile") MultipartFile imageFile,
-                                         @RequestParam("previewImageFile") MultipartFile previewImageFile) {
+                                         @RequestParam("previewImageFile") MultipartFile previewImageFile,
+                                         BindingResult bindingResult) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        if (bookRepository.findByIsbn(book.getIsbn()) != null) {
+            bindingResult
+                    .rejectValue("", "");
+            modelAndView.addObject(book);
+            modelAndView.addObject("isbnError","Book by this SIBN already exists");
+            modelAndView.setViewName("addBook");
+            return modelAndView;
+        }
 
         book.setBookImage(new BookImage(book.getIsbn()+imageFile.getOriginalFilename(), book.getIsbn()+previewImageFile.getOriginalFilename()));
         tempBook = book;
@@ -65,8 +74,6 @@ public class PublishBookController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("addAuthors");
         modelAndView.addObject("rows",rows-1);
         modelAndView.addObject("book", new Book());

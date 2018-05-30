@@ -21,41 +21,41 @@
 
         <form class="form" th:action="@{/saveBook}" method="post" th:object="${book}" enctype="multipart/form-data">
 
-
-            <div class="form-row" style="margin-bottom: 20px;">
-                <div class="col text-left" style="background-color: rgba(220,233,225,0.6); margin-bottom: 20px; margin: 10px; padding: 10px;">
+            <!--rgba(220,233,225,0.6);-->
+            <div class="form-row" style="margin-bottom: 20px; margin-top: -10px;">
+                <div class="col text-left" style="background-color: rgba(167,46,214,0.45); margin-bottom: 20px; margin: 10px; padding: 10px;">
                     <div class="form-group">
                         <label>ISBN:</label>
                         <input class="form-control" id="isbn" th:id="isbn" th:type="text" th:name="isbn"
                                th:field="*{isbn}"
                                placeholder="Book ISBN" required="true" th:value="${book.isbn}"/>
-                        <p th:text="${isbnError}" class="text-danger"></p>
+                        <p th:text="${isbnError}" style="color: darkred"></p>
                     </div>
 
                     <div class="form-group">
                         <label>Title:</label>
                         <input class="form-control" id="title" th:id="title" th:type="text" th:name="title"
-                               th:field="*{title}"
+                               th:field="*{title}" th:value="${book.title}"
                                placeholder="Book title" required="true"/>
                     </div>
 
                     <div class="form-group">
                         <label>Description:</label>
                         <textarea class="form-control" rows="5" cols="25" id="description" th:id="description"
-                              th:type="text" th:name="description" th:field="*{description}"
+                              th:type="text" th:name="description" th:field="*{description}" th:value="${book.description}"
                               placeholder="Book Description" required="true"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label>Title:</label>
                         <input class="form-control" id="edition" th:id="edition" th:type="text" th:name="edition"
-                               th:field="*{edition}"
+                               th:field="*{edition}" th:value="${book.edition}"
                                placeholder="Edition" required="true"/>
                     </div>
                 </div>
 
 
-                <div class="col text-left" style="background-color: rgba(220,233,225,0.6); margin: 10px; padding: 10px;">
+                <div class="col text-left" style="background-color: rgba(167,46,214,0.45); margin: 10px; padding: 10px;">
                     <div class="form-group">
                         <label>Price:</label>
                         <input class="form-control" id="price" th:id="price" th:type="number" th:name="price"
@@ -65,7 +65,7 @@
                     <div class="form-group">
                         <label>Category:</label>
                         <input class="form-control" id="category" th:id="category" th:type="text" th:name="category"
-                               th:field="*{category}"
+                               th:field="*{category}" th:value="${book.category}"
                                placeholder="Category" required="true"/>
                     </div>
 
