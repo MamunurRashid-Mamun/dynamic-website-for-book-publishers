@@ -45,37 +45,36 @@
                         and more recently with desktop publishing software like Aldus PageMaker including versions of
                         Lorem Ipsum.
                     </p>
-
                 </div>
-
+            </div>
+            <div class="row justify-content-center">
                 <div class="col-md-8 offset-md-2" style="padding: 20px; background-color: rgba(205,255,224,0.6); margin:10px;">
                     <div style="padding-left: 10px;">
                         <p style="font-size: medium">Books written by <span th:text="${author.name} + ':'"></span></p>
                         <hr/>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-4" th:each="book,iterator : ${books}">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-4" th:each="book,iterator : ${books}">
 
-                        <div class="card">
-                            <input th:hidden="${book.isbn}" th:name="isbn"/>
-                            <a th:href="@{/bookDetails(isbn=${book.isbn})}"><img class="card-img-top"
-                                                                                 th:src="@{'/uploads/'+${book.bookImage.imageTitle}}"
-                                                                                 style="height: 254px;"/></a>
-                            <div class="namecontainer">
-                                <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">
-                                    <a th:href="@{/bookDetails(isbn=${book.isbn})}" th:text="${book.title}">Item
-                                        One</a>
-                                </h5>
-                                <h6 th:text="${'$' + book.price}">$24.99</h6>
-                                <p th:text="${book.category}">Lorem ipsum dolor sit amet</p>
+                            <div class="card">
+                                <input th:hidden="${book.isbn}" th:name="isbn"/>
+                                <a th:href="@{/bookDetails(isbn=${book.isbn})}"><img class="card-img-top"
+                                                                                     th:src="@{'/uploads/'+${book.bookImage.imageTitle}}"
+                                                                                     style="height: 254px;"/></a>
+                                <div class="namecontainer">
+                                    <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">
+                                        <a th:href="@{/bookDetails(isbn=${book.isbn})}" th:text="${book.title}">Item
+                                            One</a>
+                                    </h5>
+                                    <h6 th:text="${'$' + book.price}">$24.99</h6>
+                                    <p th:text="${book.category}">Lorem ipsum dolor sit amet</p>
+                                </div>
+
                             </div>
-                            <!--<div class="namecontainer">-->
-                            <!--<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>-->
-                            <!--</div>-->
-                        </div>
 
+                        </div>
                     </div>
                 </div>
-
             </div>
 
         </div>

@@ -20,6 +20,6 @@ public interface BookRepository extends JpaRepository<Book,String> {
 
     Book findByIsbn(String isbn);
 
-    @Query(value = "SELECT * FROM BOOK WHERE ISBN = (SELECT ISBN FROM BOOK_AUTHORS WHERE AUTHOR_ID = (SELECT AUTHOR_ID FROM AUTHOR WHERE UPPER(NAME) LIKE UPPER(?1)))", nativeQuery = true)
+    @Query(value = "SELECT * FROM BOOK WHERE ISBN IN (SELECT ISBN FROM BOOK_AUTHORS WHERE AUTHOR_ID IN (SELECT AUTHOR_ID FROM AUTHOR WHERE UPPER(NAME) LIKE UPPER(?1)))", nativeQuery = true)
     List<Book> findByAuthorName(String authorName);
 }
