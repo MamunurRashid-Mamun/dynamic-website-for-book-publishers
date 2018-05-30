@@ -23,7 +23,7 @@
 
             <!--rgba(220,233,225,0.6);-->
             <div class="form-row" style="margin-bottom: 20px; margin-top: -10px;">
-                <div class="col text-left" style="background-color: rgba(167,46,214,0.45); margin-bottom: 20px; margin: 10px; padding: 10px;">
+                <div class="col text-left" style="background-color: rgba(173,230,240,0.5); margin-bottom: 20px; margin: 10px; padding: 10px;">
                     <div class="form-group">
                         <label>ISBN:</label>
                         <input class="form-control" id="isbn" th:id="isbn" th:type="text" th:name="isbn"
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Title:</label>
+                        <label>Edition:</label>
                         <input class="form-control" id="edition" th:id="edition" th:type="text" th:name="edition"
                                th:field="*{edition}" th:value="${book.edition}"
                                placeholder="Edition" required="true"/>
@@ -55,7 +55,7 @@
                 </div>
 
 
-                <div class="col text-left" style="background-color: rgba(167,46,214,0.45); margin: 10px; padding: 10px;">
+                <div class="col text-left" style="background-color: rgba(173,230,240,0.5); margin: 10px; padding: 10px;">
                     <div class="form-group">
                         <label>Price:</label>
                         <input class="form-control" id="price" th:id="price" th:type="number" th:name="price"
@@ -76,7 +76,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Details Preview Image:</label>
+                        <label>Preview Image:</label>
                         <input class="form-control text-left" type="file" name="previewImageFile" required="true"
                                accept="image/*" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"/>
                     </div>

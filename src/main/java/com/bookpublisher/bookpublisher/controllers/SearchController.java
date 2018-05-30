@@ -30,15 +30,33 @@ public class SearchController {
             modelAndView.addObject("bookNotFoundMessage", "No Book Found of term '" + searchValue + "'");
         }
 
-
-
-
         List<String> categories = bookRepository.findDistinctCategory();
         modelAndView.addObject("categories",categories);
 
         modelAndView.addObject("searchValue", searchValue);
 
         modelAndView.setViewName("home");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/searchForDelete", method = RequestMethod.GET)
+    public ModelAndView searchForDelete(@RequestParam("searchValue") String searchValue) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        List<Book> books = bookRepository.findAllByTitleContainingIgnoreCaseOrCategoryContainingIgnoreCase(searchValue,searchValue);
+        List<Book> booksByAuthorName = bookRepository.findByAuthorName("%"+searchValue+"%");
+        if (!books.isEmpty()) {
+            modelAndView.addObject("allBook",books);
+        } else if (!booksByAuthorName.isEmpty()){
+            modelAndView.addObject("allBook",booksByAuthorName);
+        } else {
+            modelAndView.addObject("bookNotFoundMessage", "No Book Found of term '" + searchValue + "'");
+        }
+
+
+        modelAndView.addObject("searchValue", searchValue);
+
+        modelAndView.setViewName("deleteBook");
         return modelAndView;
     }
 }
