@@ -33,7 +33,7 @@ public class PublishBookController {
     BookRepository bookRepository;
     Book tempBook;
 
-    @RequestMapping(value = "/saveBook")
+    @RequestMapping(value = "/admin/saveBook")
     public ModelAndView showSaveNewBookPage(@ModelAttribute Book book) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("addBook");
@@ -42,7 +42,7 @@ public class PublishBookController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/saveBook", consumes = "multipart/*", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/saveBook", consumes = "multipart/*", method = RequestMethod.POST)
     public ModelAndView showSaveBookPage(@ModelAttribute Book book, @ModelAttribute("numberOfAuthor") int rows,
                                          @RequestParam("imageFile") MultipartFile imageFile,
                                          @RequestParam("previewImageFile") MultipartFile previewImageFile,
@@ -81,7 +81,7 @@ public class PublishBookController {
     }
 
 
-    @RequestMapping(value = "/saveAuthors", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/saveAuthors", method = RequestMethod.POST)
     public ModelAndView saveAuthors(@ModelAttribute Book book) {
         ModelAndView modelAndView = new ModelAndView();
         tempBook.setAuthors(book.getAuthors());

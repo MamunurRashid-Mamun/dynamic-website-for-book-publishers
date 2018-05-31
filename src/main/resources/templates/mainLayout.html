@@ -16,7 +16,7 @@
     <!-- Material Design Bootstrap -->
     <link href="https://mdbootstrap.com/previews/docs/latest/css/mdb.min.css" rel="stylesheet"/>
 
-    <link rel="stylesheet" href="css/loginStyle.css"/>
+    <link rel="stylesheet" href="/css/loginStyle.css"/>
 </head>
 
 <body>
@@ -32,14 +32,14 @@
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/myBookList">My Booklist</a>
+                <a class="nav-link" href="/user/myBookList">My Booklist</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin
                 </a>
                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/saveBook">Publish Book</a>
-                    <a class="dropdown-item" href="/deleteBook">Delete Book</a>
+                    <a class="dropdown-item" href="/admin/saveBook">Publish Book</a>
+                    <a class="dropdown-item" href="/admin/deleteBook">Delete Book</a>
                 </div>
             </li>
         </ul>

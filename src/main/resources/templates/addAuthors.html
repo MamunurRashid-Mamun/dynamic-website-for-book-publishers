@@ -6,7 +6,7 @@
       layout:decorator="mainLayout">
 <head>
     <title>Add Authors</title>
-    <link rel="stylesheet" href="css/loginStyle.css"/>
+    <link rel="stylesheet" href="/css/loginStyle.css"/>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
     <!-- Bootstrap core CSS -->
@@ -19,7 +19,7 @@
 <div class="wrapper">
     <div style="position:relative;z-index:1; alignment:center;" class="container" layout:fragment="content">
 
-        <form class="form" th:action="@{/saveAuthors}" method="post" th:object="${book}" enctype="multipart/form-data">
+        <form class="form" th:action="@{/admin/saveAuthors}" method="post" th:object="${book}" enctype="multipart/form-data">
 
             <th:block th:each="i: ${#numbers.sequence(0, rows)}">
                 <div class="form-row" style="margin-bottom: 10px;">

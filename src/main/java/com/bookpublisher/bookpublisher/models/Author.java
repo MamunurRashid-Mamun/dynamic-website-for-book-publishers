@@ -10,6 +10,7 @@ public class Author {
     private long id;
     private String name;
     private String email;
+    @Column(length = 1000)
     private String info;
 
     public Author() {

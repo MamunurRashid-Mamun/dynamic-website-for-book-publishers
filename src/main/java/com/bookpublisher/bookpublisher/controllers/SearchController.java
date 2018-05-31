@@ -39,7 +39,7 @@ public class SearchController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/searchForDelete", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/searchForDelete", method = RequestMethod.GET)
     public ModelAndView searchForDelete(@RequestParam("searchValue") String searchValue) {
         ModelAndView modelAndView = new ModelAndView();
 

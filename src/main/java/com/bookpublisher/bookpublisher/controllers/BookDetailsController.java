@@ -30,7 +30,7 @@ public class BookDetailsController {
         return modelAndView;
     }
 
-    @RequestMapping("/writeReview")
+    @RequestMapping("/user/writeReview")
     public ModelAndView writeReview(@RequestParam("isbn") String isbn,
                                     @ModelAttribute("review") String review,
                                     Principal principal) {

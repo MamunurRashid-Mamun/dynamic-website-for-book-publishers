@@ -8,7 +8,7 @@
     <title>My Booklist</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="css/loginStyle.css"/>
+    <link rel="stylesheet" href="/css/loginStyle.css"/>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
     <!-- Bootstrap core CSS -->
@@ -30,7 +30,7 @@
     <div style="position:relative;z-index:0; alignment:center; width: 100%;" layout:fragment="content">
 
 
-        <div class="container justify-content-center table-responsive-sm" style="margin-top: -50px;">
+        <div class="container justify-content-center table-responsive-sm">
             <table class="table table-striped table-bordered" style="background-color: rgba(205,255,224,0.6);">
                 <thead>
                 <tr class="d-flex text-center">
@@ -44,7 +44,7 @@
                     <td class="col-2 col-md-2 text-center" th:text="${iterator.index + 1}" style="font-size: large;"></td>
                     <td class="col-6 col-md-8 text-left" ><a th:href="@{/bookDetails(isbn=${book.isbn})}" th:text="${book.title}" style="font-size: large;">Mamun</a></td>
                     <td class="col-4 col-md-2 text-center" style="font-size: large;">
-                        <a th:href="@{/deleteBookFromList(isbn=${book.isbn})}">
+                        <a th:href="@{/user/deleteBookFromList(isbn=${book.isbn})}">
                             <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash" style="font-size: large"></i></button>
                         </a>
                     </td>

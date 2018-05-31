@@ -25,6 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             ,"/findByCategory/**","/search/**"
                             ,"/uploads/**","/authorDetails/**").permitAll()
                     .antMatchers("/admin/**").hasRole("ADMIN")
+                    .antMatchers("/user/**").hasRole("USER")
                     .antMatchers("/h2/**").hasRole("ADMIN")
                     .antMatchers("/**").access("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
                     .anyRequest().authenticated()

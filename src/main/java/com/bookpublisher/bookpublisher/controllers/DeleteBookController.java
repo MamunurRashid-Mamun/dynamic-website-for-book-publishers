@@ -23,7 +23,7 @@ public class DeleteBookController {
     @Autowired
     UserRepository userRepository;
 
-    @RequestMapping(value = "/deleteBook")
+    @RequestMapping(value = "/admin/deleteBook")
     public ModelAndView showDeleteBookPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("allBook",bookRepository.findAll());
@@ -31,9 +31,10 @@ public class DeleteBookController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/deleteOneBook")
+    @RequestMapping(value = "/admin/deleteOneBook")
     public ModelAndView deleteBook(@RequestParam("isbn") String isbn) {
         ModelAndView modelAndView = new ModelAndView();
+        bookRepository.deleteFromUserBooksByIsbn(isbn);
         Book book = bookRepository.findByIsbn(isbn);
         File file1 = new File("uploads/"+book.getBookImage().getImageTitle());
         File file2 = new File("uploads/"+book.getBookImage().getPreviewImageTitle());
@@ -43,10 +44,9 @@ public class DeleteBookController {
         if (file2.exists()) {
             file2.delete();
         }
-
         bookRepository.delete(book);
         modelAndView.addObject("allBook",bookRepository.findAll());
-        modelAndView.setViewName("redirect:/deleteBook");
+        modelAndView.setViewName("redirect:/admin/deleteBook");
         return modelAndView;
     }
 

@@ -8,14 +8,14 @@
     <title>Delete Book</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="css/loginStyle.css"/>
+    <link rel="stylesheet" href="/css/loginStyle.css" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
     <!-- Bootstrap core CSS -->
     <link href="https://mdbootstrap.com/previews/docs/latest/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Material Design Bootstrap -->
     <link href="https://mdbootstrap.com/previews/docs/latest/css/mdb.min.css" rel="stylesheet"/>
-    <link href="css/shop-homepage.css" rel="stylesheet"/>
+    <link href="css/shop-homepage.css"  rel="stylesheet"/>
 
     <link href="http://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
@@ -30,10 +30,10 @@
     <div style="position:relative;z-index:0; alignment:center; width: 100%;" layout:fragment="content">
 
 
-        <div class="container justify-content-center table-responsive-sm" style="margin-top: -50px;">
-            <a class="btn btn-primary float-left" href="/deleteBook"><i class="fa fa-refresh"></i> Refresh</a>
+        <div class="container justify-content-center table-responsive-sm">
+            <a class="btn btn-primary float-left" href="/admin/deleteBook"><i class="fa fa-refresh"></i> Refresh</a>
             <div class="float-right">
-                <form class="form-inline" th:action="@{/searchForDelete(searchValue=${searchValue})}">
+                <form class="form-inline" th:action="@{/admin/searchForDelete(searchValue=${searchValue})}">
                     <div class="form-group mx-sm-3 mb-2">
                         <input type="text" class="form-control" th:name="searchValue" th:value="${searchValue}" placeholder="Search"/>
                     </div>
@@ -53,7 +53,7 @@
                     <td class="col-2 col-md-2 text-center" th:text="${iterator.index + 1}" style="font-size: large;"></td>
                     <td class="col-6 col-md-8 text-left" ><a th:href="@{/bookDetails(isbn=${book.isbn})}" th:text="${book.title}" style="font-size: large;">Mamun</a></td>
                     <td class="col-4 col-md-2 text-center" style="font-size: large;">
-                        <a th:href="@{/deleteOneBook(isbn=${book.isbn})}">
+                        <a th:href="@{/admin/deleteOneBook(isbn=${book.isbn})}">
                             <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash" style="font-size: large"></i></button>
                         </a>
                     </td>

@@ -20,7 +20,7 @@ public class BookListController {
     @Autowired
     UserRepository userRepository;
 
-    @RequestMapping(value = "/addToBookList")
+    @RequestMapping(value = "/user/addToBookList")
     public ModelAndView addToBookList(@RequestParam("isbn") String isbn, Principal principal, RedirectAttributes redirectAttributes) {
         ModelAndView modelAndView = new ModelAndView();
         User user = userRepository.findByUserNameOrEmail(principal.getName(), principal.getName());
@@ -33,11 +33,11 @@ public class BookListController {
         user.getBookList().add(book);
         userRepository.save(user);
         modelAndView.addObject("bookList",user.getBookList());
-        modelAndView.setViewName("redirect:/myBookList");
+        modelAndView.setViewName("redirect:/user/myBookList");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/myBookList")
+    @RequestMapping(value = "/user/myBookList")
     public ModelAndView addToBookList(Principal principal) {
         ModelAndView modelAndView = new ModelAndView();
         User user = userRepository.findByUserNameOrEmail(principal.getName(), principal.getName());
@@ -46,14 +46,14 @@ public class BookListController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/deleteBookFromList")
+    @RequestMapping(value = "/user/deleteBookFromList")
     public ModelAndView deleteBookFromList(@RequestParam("isbn") String isbn, Principal principal) {
         ModelAndView modelAndView = new ModelAndView();
         User user = userRepository.findByUserNameOrEmail(principal.getName(), principal.getName());
         user.getBookList().remove(bookRepository.findByIsbn(isbn));
         userRepository.save(user);
         modelAndView.addObject("bookList",user.getBookList());
-        modelAndView.setViewName("redirect:/myBookList");
+        modelAndView.setViewName("redirect:/user/myBookList");
         return modelAndView;
     }
 
