@@ -1,6 +1,7 @@
 package com.bookpublisher.bookpublisher.entity;
 
 import com.bookpublisher.bookpublisher.models.Book;
+import com.bookpublisher.bookpublisher.models.CartItem;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -40,6 +41,10 @@ public class User {
     @JoinTable(name = "user_books", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "isbn") })
     private List<Book> bookList;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_cartItems", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "cart_item_id") })
+    private List<CartItem> cartItems;
+
     public User() {
     }
 
@@ -49,6 +54,14 @@ public class User {
         this.email = email;
         this.enabled = enabled;
         this.roles = roles;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 
     public long getId() {

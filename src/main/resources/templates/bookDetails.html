@@ -48,6 +48,7 @@
                     <p style="font-size: x-large;" th:text="${'Category: ' + book.category}">Category: Programming</p>
                     <!--<p style="font-size: x -large;" th:text="${'Rating: ' + book.rating + '/10'}">Rating: 3/5</p>-->
                     <p style="font-size: x-large;"><a th:href="@{/user/addToBookList(isbn=${book.isbn})}"><i class="fa fa-heart-o"></i> Add to Booklist</a></p>
+                    <a th:href="@{/user/addToCart(isbn=${book.isbn})}"><button class="btn btn-warning"><i class="fa fa-shopping-cart"></i> Add to Cart</button></a>
                     <p style="font-size: x-large; color: darkred;" th:text="${errorMessage}"></p>
                 </div>
 

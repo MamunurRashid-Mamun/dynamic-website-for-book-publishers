@@ -38,7 +38,7 @@ public class BookListController {
     }
 
     @RequestMapping(value = "/user/myBookList")
-    public ModelAndView addToBookList(Principal principal) {
+    public ModelAndView showMyBookList(Principal principal) {
         ModelAndView modelAndView = new ModelAndView();
         User user = userRepository.findByUserNameOrEmail(principal.getName(), principal.getName());
         modelAndView.addObject("bookList",user.getBookList());
