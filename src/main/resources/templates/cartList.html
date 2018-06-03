@@ -5,7 +5,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorator="mainLayout">
 <head>
-    <title>My Booklist</title>
+    <title>Cart</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="/css/loginStyle.css"/>
@@ -30,7 +30,7 @@
     <div style="position:relative;z-index:0; alignment:center; width: 100%;" layout:fragment="content">
 
         <div class="container">
-            <div class="row">
+            <div class="row" th:if="${#lists.size(cartItems)!=0}">
                 <div class="col-md-7" style="padding: 10px; margin: 10px;" >
 
                     <div class="row" style="margin-bottom: 10px; padding: 10px; background-color:rgba(205,255,224,0.6);">
@@ -57,7 +57,7 @@
 
                         <div class="col-md-2" style="padding-top: 50px;">
                             <h5 th:text="${cartItem.book.price+' TK.'}">250 Tk.</h5>
-                            <div><a><i class="fa fa-trash btn btn-danger float-right float-down"></i></a></div>
+                            <div><a th:href="@{/user/deleteCartItem(cartItemId=${cartItem.cartItemId})}"><i class="fa fa-trash btn btn-danger float-right float-down"></i></a></div>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,11 @@
                     </table>
                 </div>
             </div>
-            <div class="col-md-7 justify-content-center">
+            <div class="justify-content-center" th:if="${#lists.size(cartItems)==0}">
+                <p style="font-size: x-large; color: darkred;">No items have been added to your cart</p>
+                <a href="/"><button class="btn btn-primary">Buy Books</button></a>
+            </div>
+            <div class="col-md-7 justify-content-center" th:if="${#lists.size(cartItems)!=0}">
                 <a href="/"><button class="btn btn-info">Shop More</button></a>
                 <a href="#"><button class="btn btn-primary">Go to Shipping</button></a>
             </div>

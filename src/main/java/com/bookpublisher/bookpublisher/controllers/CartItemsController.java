@@ -68,4 +68,15 @@ public class CartItemsController {
         modelAndView.setViewName("cartList");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/user/deleteCartItem")
+    public ModelAndView deleteCartItems(@RequestParam("cartItemId") long cartItemId, Principal principal) {
+        ModelAndView modelAndView = new ModelAndView();
+        User user = userRepository.findByUserNameOrEmail(principal.getName(), principal.getName());
+        user.getCartItems().remove(cartItemRepository.findOne(cartItemId));
+        userRepository.save(user);
+        cartItemRepository.deleteByCartItemID(cartItemId);
+        modelAndView.setViewName("redirect:/user/showCartItems");
+        return modelAndView;
+    }
 }
