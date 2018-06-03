@@ -8,7 +8,7 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long cartItemId;
     private int quantity;
-    private double netPrice;
+    private int netPrice;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "isbn")
@@ -40,11 +40,11 @@ public class CartItem {
         this.netPrice = book.getPrice() * quantity;
     }
 
-    public double getNetPrice() {
+    public int getNetPrice() {
         return netPrice;
     }
 
-    public void setNetPrice(double netPrice) {
+    public void setNetPrice(int netPrice) {
         this.netPrice = netPrice;
     }
 

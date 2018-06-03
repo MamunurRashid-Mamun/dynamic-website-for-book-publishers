@@ -47,7 +47,7 @@ public class CartItemsController {
         userRepository.save(user);
         int totalPrice = 0;
         for (CartItem cart : user.getCartItems()) {
-            totalPrice = totalPrice + cart.getBook().getPrice();
+            totalPrice = totalPrice + cart.getNetPrice();
         }
         modelAndView.addObject("totalPrice",totalPrice+40);
         modelAndView.addObject("cartItems",user.getCartItems());
@@ -62,7 +62,7 @@ public class CartItemsController {
         modelAndView.addObject("cartItems",user.getCartItems());
         int totalPrice = 0;
         for (CartItem cart : user.getCartItems()) {
-            totalPrice = totalPrice + cart.getBook().getPrice();
+            totalPrice = totalPrice + cart.getNetPrice();
         }
         modelAndView.addObject("totalPrice",totalPrice+40);
         modelAndView.setViewName("cartList");
@@ -76,6 +76,40 @@ public class CartItemsController {
         user.getCartItems().remove(cartItemRepository.findOne(cartItemId));
         userRepository.save(user);
         cartItemRepository.deleteByCartItemID(cartItemId);
+        modelAndView.setViewName("redirect:/user/showCartItems");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/user/increaseCartItem")
+    public ModelAndView increaseCartItems(@RequestParam("cartItemId") long cartItemId, Principal principal) {
+        ModelAndView modelAndView = new ModelAndView();
+        User user = userRepository.findByUserNameOrEmail(principal.getName(), principal.getName());
+        List<CartItem> cartItems = user.getCartItems();
+        CartItem cartItem = cartItemRepository.findByCartItemId(cartItemId);
+        int index = cartItems.indexOf(cartItem);
+        cartItem.setQuantity(cartItem.getQuantity() + 1);
+        cartItems.set(index, cartItem);
+        user.setCartItems(cartItems);
+        userRepository.save(user);
+        modelAndView.setViewName("redirect:/user/showCartItems");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/user/decreaseCartItem")
+    public ModelAndView decreaseCartItems(@RequestParam("cartItemId") long cartItemId, Principal principal, RedirectAttributes redirectAttributes) {
+        ModelAndView modelAndView = new ModelAndView();
+        User user = userRepository.findByUserNameOrEmail(principal.getName(), principal.getName());
+        List<CartItem> cartItems = user.getCartItems();
+        CartItem cartItem = cartItemRepository.findByCartItemId(cartItemId);
+        int index = cartItems.indexOf(cartItem);
+        if (cartItem.getQuantity() > 1) {
+            cartItem.setQuantity(cartItem.getQuantity() - 1);
+            cartItems.set(index, cartItem);;
+            user.setCartItems(cartItems);
+            userRepository.save(user);
+        } else {
+            redirectAttributes.addFlashAttribute("decreaseError","Item should not be less than 1");
+        }
         modelAndView.setViewName("redirect:/user/showCartItems");
         return modelAndView;
     }

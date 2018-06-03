@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class BookDetailsController {
@@ -37,7 +40,9 @@ public class BookDetailsController {
         ModelAndView modelAndView = new ModelAndView();
         Book book = bookRepository.findByIsbn(isbn);
         User user = userRepository.findByUserNameOrEmail(principal.getName(), principal.getName());
-        book.getReviews().add(new BookReview(user.getUserName(), review));
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        BookReview bookReview = new BookReview(dateFormat.format(new Date()),user.getUserName(), review);
+        book.getReviews().add(bookReview);
         bookRepository.save(book);
         modelAndView.addObject("book", book);
         modelAndView.setViewName("redirect:/bookDetails?isbn=" + isbn);

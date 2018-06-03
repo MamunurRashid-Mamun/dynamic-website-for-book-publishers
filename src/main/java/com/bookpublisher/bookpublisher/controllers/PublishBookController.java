@@ -85,7 +85,6 @@ public class PublishBookController {
     public ModelAndView saveAuthors(@ModelAttribute Book book) {
         ModelAndView modelAndView = new ModelAndView();
         tempBook.setAuthors(book.getAuthors());
-        System.out.println(tempBook);
         bookRepository.save(tempBook);
         modelAndView.setViewName("redirect:/");
         return modelAndView;

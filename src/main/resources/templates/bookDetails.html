@@ -102,6 +102,7 @@
 
                     <th:block th:each="review, iterator : ${book.reviews}">
                         <h5 th:text="${review.reviewer}"><b>Mamunur Rashid</b></h5>
+                        <p th:text="${review.date}"></p>
                         <p th:text="${review.review}">
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.

@@ -49,14 +49,15 @@
                                style="font-size: x-large;">Introduction to java Programming</a>
                         </div>
 
-                        <div class="col-md-3 float-right">
-                            <div class="col-md-1"><a><i class="btn fa fa-plus btn-warning"></i></a></div>
-                            <div class="col-md-3"><input class="text-center" type="text" value="1" size="2"/></div>
-                            <div class="col-md-1"><a><i class="btn fa fa-minus btn-warning"></i></a></div>
+                        <div class="col-md-3 float-right" th:with="cartItemIdVar=${cartItem.cartItemId}">
+                            <div class="col-md-1"><a th:href="@{/user/increaseCartItem(cartItemId=${cartItemIdVar})}"><i class="btn fa fa-plus btn-warning"></i></a></div>
+                            <div class="col-md-3"><input class="text-center" type="text" th:value="${cartItem.quantity}" size="2"/></div>
+                            <div class="col-md-1"><a th:href="@{/user/decreaseCartItem(cartItemId=${cartItemIdVar})}"><i class="btn fa fa-minus btn-warning"></i></a></div>
+                            <!--<p th:text="${decreaseError}" style="color: darkred;"></p>-->
                         </div>
 
                         <div class="col-md-2" style="padding-top: 50px;">
-                            <h5 th:text="${cartItem.book.price+' TK.'}">250 Tk.</h5>
+                            <h5 th:text="${cartItem.netPrice+' TK.'}">250 Tk.</h5>
                             <div><a th:href="@{/user/deleteCartItem(cartItemId=${cartItem.cartItemId})}"><i class="fa fa-trash btn btn-danger float-right float-down"></i></a></div>
                         </div>
                     </div>
@@ -89,7 +90,7 @@
                 </div>
             </div>
             <div class="justify-content-center" th:if="${#lists.size(cartItems)==0}">
-                <p style="font-size: x-large; color: darkred;">No items have been added to your cart</p>
+                <p style="font-size: x-large; color: darkred;">Cart is empty</p>
                 <a href="/"><button class="btn btn-primary">Buy Books</button></a>
             </div>
             <div class="col-md-7 justify-content-center" th:if="${#lists.size(cartItems)!=0}">

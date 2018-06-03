@@ -19,4 +19,5 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
     @Query(value = "DELETE FROM CART_ITEM WHERE CART_ITEM_ID = ?1", nativeQuery = true)
     Integer deleteByCartItemID(long cartItemId);
 
+    CartItem findByCartItemId(long cartItemId);
 }
