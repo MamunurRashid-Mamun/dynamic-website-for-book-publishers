@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="mainLayout">
+<head>
+    <title>Shipping Address</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/css/loginStyle.css"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+    <!-- Bootstrap core CSS -->
+    <link href="https://mdbootstrap.com/previews/docs/latest/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Material Design Bootstrap -->
+    <link href="https://mdbootstrap.com/previews/docs/latest/css/mdb.min.css" rel="stylesheet"/>
+    <link href="css/shop-homepage.css" rel="stylesheet"/>
+
+    <link href="http://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" rel="stylesheet"/>
+
+    <link href="http://getbootstrap.com/docs/4.0/assets/css/docs.min.css" rel="stylesheet"/>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>-->
+
+</head>
+<body>
+<div class="wrapper">
+    <div style="position:relative;z-index:0; alignment:center; width: 100%;" layout:fragment="content">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7" style="padding: 10px; margin-bottom: 10px;">
+
+                    <div style="margin-bottom: 10px; padding: 10px; background-color:rgba(205,255,224,0.6);">
+                        <div class="col-md-7 text-left"><h4>Shipping Address</h4></div>
+                    </div>
+                    <div style="background-color:rgba(205,255,224,0.6); padding: 10px; margin-bottom: 10px;">
+                        <form th:action="@{/user/paymentDetails}" th:method="post" th:object="${customer}">
+                            <div class="form-group text-left">
+                                <label>Name:</label>
+                                <input class="form-control" type="text" name="name"
+                                       th:field="*{name}" placeholder="Full Name" required="true"/>
+                            </div>
+
+                            <div class="form-group text-left">
+                                <label >Phone No:</label>
+                                <input class="form-control" type="text" name="phone"
+                                       th:field="*{phone}" placeholder="Phone No" required="true"/>
+                            </div>
+                            <div class="form-group text-left">
+                                <label>Alternative Phone No:</label>
+                                <input class="form-control" type="text" name="alternativePhone"
+                                       th:field="*{alternativePhone}" placeholder="Alternative Phone No" required="true"/>
+                            </div>
+                            <div class="form-group text-left">
+                                <label >Address:</label>
+                                <textarea class="form-control" rows="4" type="text" name="Address"
+                                          th:field="*{address}" placeholder="Address" required="true"></textarea>
+                            </div>
+                            <div class="form-group float-right" style="margin-top: 10px;">
+                                <button type="submit" class="btn btn-warning">Continue to Payment</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-md-4" style="padding: 10px; margin-left: 10px; margin-bottom: 10px;">
+                    <h2 style="background-color:rgba(205,255,224,0.6);">Checkout Summary</h2>
+                    <table class="table" style="background-color:rgba(205,255,224,0.6);">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-left">Subtotal</td>
+                            <td class="text-right" th:text="${totalPrice-40+' TK.'}">200</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Shipping</td>
+                            <td class="text-right">40 TK.</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Total</td>
+                            <td class="text-right" th:text="${totalPrice+' TK.'}">240</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left" style="font-weight: bold">Payable Total</td>
+                            <td class="text-right" th:text="${totalPrice+' TK.'}" style="font-weight: bold">240</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- JQuery -->
+<script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/jquery-3.2.1.min.js"></script>
+<!-- Tooltips -->
+<script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/mdb.min.js"></script>
+</body>
+</html>

@@ -82,20 +82,20 @@
                             <td class="text-right" th:text="${totalPrice+' TK.'}">240</td>
                         </tr>
                         <tr>
-                            <td class="text-left">Payable Total</td>
-                            <td class="text-right" th:text="${totalPrice+' TK.'}">240</td>
+                            <td class="text-left" style="font-weight:bold">Payable Total</td>
+                            <td class="text-right" th:text="${totalPrice+' TK.'}" style="font-weight:bold">240</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+            <div class="col-md-7 justify-content-center" th:if="${#lists.size(cartItems)!=0}">
+                <a href="/"><button class="btn btn-primary">Continue to Shopping</button></a>
+                <a href="/user/shippingDetails"><button class="btn btn-warning">Continue to Shipping</button></a>
+            </div>
             <div class="justify-content-center" th:if="${#lists.size(cartItems)==0}">
                 <p style="font-size: x-large; color: darkred;">Cart is empty</p>
                 <a href="/"><button class="btn btn-primary">Buy Books</button></a>
-            </div>
-            <div class="col-md-7 justify-content-center" th:if="${#lists.size(cartItems)!=0}">
-                <a href="/"><button class="btn btn-info">Shop More</button></a>
-                <a href="#"><button class="btn btn-primary">Go to Shipping</button></a>
             </div>
         </div>
     </div>
