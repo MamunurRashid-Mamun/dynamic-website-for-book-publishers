@@ -49,6 +49,7 @@
                         <th>Status</th>
                         <th>Date</th>
                         <th class="text-center">Details</th>
+                        <th class="text-center">Delete</th>
                         </thead>
                         <tbody>
                         <tr th:each="order:${orders}">
@@ -58,6 +59,7 @@
                             <td th:if="${order.status == 'Undelivered'}" style="color: darkred;" th:text="${order.status}">Undelivered</td>
                             <td th:text="${order.orderDate}">10-05-18</td>
                             <td class="text-center"><a th:href="@{/admin/orderDetails(orderNo=${order.orderNo})}"><button class="btn btn-info">Details</button></a></td>
+                            <td class="text-center"><a th:href="@{/admin/deleteOrder(orderNo=${order.orderNo})}"><button class="btn btn-danger">Delete</button></a></td>
                         </tr>
                         </tbody>
                     </table>

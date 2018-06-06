@@ -117,4 +117,14 @@ public class OrderController {
         modelAndView.setViewName("orderDetails");
         return modelAndView;
     }
+
+    @RequestMapping("/admin/deleteOrder")
+    public ModelAndView deleteOrder(@RequestParam("orderNo") long orderNo) {
+        ModelAndView modelAndView = new ModelAndView();
+        Order order = orderRepository.findOne(orderNo);
+        orderRepository.deleteByOrderNoFromCustomerCartItem(orderNo);
+        orderRepository.delete(orderNo);
+        modelAndView.setViewName("redirect:/admin/allOrders");
+        return modelAndView;
+    }
 }
