@@ -48,17 +48,17 @@
                         </ul>
                     </div>
                     <div class="float-right" style="margin-bottom: 10px;">
-                        <form th:action="@{/user/confirmOrder}" th:object="${customer}" method="post">
+                        <form th:action="@{/user/confirmOrder}" th:object="${order}" method="post">
 
-                                <input type="hidden" name="name"
-                                       th:field="*{name}" th:value="${customer.name}"/>
+                                <input type="hidden" name="customerName"
+                                       th:field="*{customerName}" th:value="${order.customerName}"/>
 
-                                <input type="hidden" name="phone"
-                                       th:field="*{phone}" th:value="${customer.phone}"/>
-                                <input type="hidden" name="alternativePhone"
-                                       th:field="*{alternativePhone}" th:value="${customer.alternativePhone}"/>
-                                <input type="hidden" name="address"
-                                          th:field="*{address}" th:value="${customer.address}"/>
+                                <input type="hidden" name="customerPhone"
+                                       th:field="*{customerPhone}" th:value="${order.customerPhone}"/>
+                                <input type="hidden" name="customerAternativePhone"
+                                       th:field="*{customerAternativePhone}" th:value="${order.customerAternativePhone}"/>
+                                <input type="hidden" name="customerAddress"
+                                          th:field="*{customerAddress}" th:value="${order.customerAddress}"/>
                                 <button type="submit" class="btn btn-warning">Confirm Order</button>
                         </form>
                     </div>
@@ -89,12 +89,11 @@
                         </tbody>
 
                     </table>
-                    <div class="text-left" style="margin-bottom: 10px; padding: 10px; background-color:rgba(205,255,224,0.6);"
-                                                                                th:object="${customer}">
+                    <div class="text-left" style="margin-bottom: 10px; padding: 10px; background-color:rgba(205,255,224,0.6);" th:object="${order}">
                         <h4>Your Address</h4>
                         <hr/>
-                        <b style="font-weight: bold">Name: </b><span th:text="${' ' + customer.name}">Mamun</span><br/>
-                        <b style="font-weight: bold">Address: </b><span th:text="${' ' + customer.address}">Bogra</span>
+                        <b style="font-weight: bold">Name: </b><span th:text="${' ' + order.customerName}">Mamun</span><br/>
+                        <b style="font-weight: bold">Address: </b><span th:text="${' ' + order.customerAddress}">Bogra</span>
                     </div>
                 </div>
             </div>

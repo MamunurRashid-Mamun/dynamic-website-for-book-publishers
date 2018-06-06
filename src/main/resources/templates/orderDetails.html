@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="mainLayout">
+<head>
+    <title>Order Details</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/css/loginStyle.css"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+    <!-- Bootstrap core CSS -->
+    <link href="https://mdbootstrap.com/previews/docs/latest/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Material Design Bootstrap -->
+    <link href="https://mdbootstrap.com/previews/docs/latest/css/mdb.min.css" rel="stylesheet"/>
+    <link href="css/shop-homepage.css" rel="stylesheet"/>
+
+    <link href="http://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" rel="stylesheet"/>
+
+    <link href="http://getbootstrap.com/docs/4.0/assets/css/docs.min.css" rel="stylesheet"/>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>-->
+
+</head>
+<body>
+<div class="wrapper">
+    <div style="position:relative;z-index:0; alignment:center; width: 100%;" layout:fragment="content">
+
+        <div class="container">
+            <div class="row" style="margin: 10px;" th:object="${order}">
+                <div class="col-md-7" style="padding: 10px; margin: 10px;">
+
+                    <div class="row" style="margin-bottom: 10px; padding: 10px; background-color:rgba(205,255,224,0.6);">
+                        <div class="col-md-4 text-center"><h5 th:text="${#lists.size(order.cartItems)+' items'}">2 items</h5></div>
+                        <div class="col-md-4 text-center"><h5 th:text="${'Total: '+totalPrice+' TK.'}">Total: 250 TK.</h5></div>
+                        <div class="col-md-4 text-center" th:if="${order.status == 'Delivered'}"><b style="color: darkgreen; font-weight: bold;" th:text="${order.status}">Delivered</b></div>
+                        <div class="col-md-4 text-center" th:if="${order.status == 'Undelivered'}"><b style="color: darkred; font-weight: bold; " th:text="${order.status}">Undelivered</b></div>
+                    </div>
+
+                    <div class="row" style="background-color:rgba(205,255,224,0.6); padding: 10px; margin-bottom: 10px;" th:each="cartItem : ${order.cartItems}" >
+                        <div class="col-md-2">
+                            <img class="img-fluid" th:src="@{'/uploads/'+${cartItem.book.bookImage.imageTitle}}"
+                                 src="https://s3-ap-southeast-1.amazonaws.com/rokomari110/productNew/130X186/fdee8126f0e4_143763.jpg"
+                                 style="border: 1px solid black; height: 100px; width: 75px;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"/>
+                        </div>
+                        <div class="col-md-7 text-left">
+                            <a th:href="@{/bookDetails(isbn=${cartItem.book.isbn})}" th:text="${cartItem.book.title}"
+                               style="font-size: x-large;">Introduction to java Programming</a>
+                        </div>
+                        <div class="col-md-3 text-center" style="border-left: 1px solid black">
+                            <p>Quantity</p>
+                            <hr/>
+                            <p th:text="${cartItem.quantity + ' pieces'}"
+                               style="font-size: medium;">2 pieces</p>
+                        </div>
+                    </div>
+                    <div>
+                        <a th:href="@{/admin/setOrderStatus(orderStatus='Delivered', orderNo = ${order.orderNo})}"><button class="btn btn-warning float-right">Delivered</button></a>
+                        <a th:href="@{/admin/setOrderStatus(orderStatus='Undelivered', orderNo = ${order.orderNo})}"><button class="btn btn-warning float-right">Undelivered</button></a>
+                        <a th:href="@{/admin/allOrders}"><button class="btn btn-info float-right">All Orders</button></a>
+                    </div>
+                </div>
+
+                <div class="col-md-4" style="padding: 10px; margin: 10px;">
+                    <h2 style="background-color:rgba(205,255,224,0.6);">Customer Info</h2>
+                    <table class="table" style="background-color:rgba(205,255,224,0.6);">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Name:</td>
+                            <td th:text="${order.customerName}">Mamunur Rashid</td>
+                        </tr>
+                        <tr>
+                            <td>Phone:</td>
+                            <td th:text="${order.customerPhone}">01738020589</td>
+                        </tr>
+                        <tr>
+                            <td>Alternative Phone:</td>
+                            <td th:text="${order.customerAternativePhone}">01521447091</td>
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td th:text="${order.customerAddress}">Bogra</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- JQuery -->
+<script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/jquery-3.2.1.min.js"></script>
+<!-- Tooltips -->
+<script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/mdb.min.js"></script>
+</body>
+</html>
