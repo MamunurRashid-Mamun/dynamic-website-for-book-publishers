@@ -12,6 +12,6 @@ import javax.transaction.Transactional;
 public interface OrderRepository extends JpaRepository<Order, Long> {
     @Transactional
     @Modifying
-    @Query(value = "DELETE FROM CUSTOMER_ORDER_CART_ITEMS WHERE ORDER_NO = ?1", nativeQuery = true)
+    @Query(value = "DELETE FROM customer_order_cart_items WHERE ORDER_NO = ?1", nativeQuery = true)
     Integer deleteByOrderNoFromCustomerCartItem(long cartItemId);
 }

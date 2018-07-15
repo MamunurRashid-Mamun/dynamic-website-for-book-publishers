@@ -9,7 +9,7 @@ public class Book {
     @Column(name = "isbn")
     private String isbn;
     private String title;
-    @Column(length = 1000)
+    @Column(length = 5000)
     private String description;
     private String edition;
     private int price;
